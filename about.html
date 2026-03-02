@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — Leish Essentials</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Leish <span>Essentials</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off"/>
+        </div>
+        <a href="cart.html" class="cart-icon">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Us</a>
+      <a href="specials.html">Specials</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="cart.html">🛒 Cart</a>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <div class="about-hero">
+    <p class="hero-eyebrow">✦ Our Story ✦</p>
+    <h1>Born from a love of nature</h1>
+    <div class="section-divider"></div>
+    <p style="margin-top: 16px;">
+      Leish Essentials started as a passion project — a desire to create
+      clean, natural products that actually work and feel luxurious.
+      Every candle poured, every soap crafted and every gloss made is a
+      little piece of us, made just for you.
+    </p>
+  </div>
+
+  <!-- STORY SECTION -->
+  <section style="padding: 80px 20px; background: var(--warm-white);">
+    <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+      <h2 style="font-family: var(--font-heading); font-size: 2rem;
+                  color: var(--dark-brown); margin-bottom: 20px;">
+        Why Leish Essentials?
+      </h2>
+      <p style="color: var(--text-medium); line-height: 1.9; font-size: 1rem;">
+        We believe that what you put on your body matters just as much as
+        what you put in it. That's why every single product in our range
+        is made with natural ingredients — no hidden nasties, no harsh
+        chemicals. Just pure, honest goodness crafted with intention. 🌿
+      </p>
+      <p style="color: var(--text-medium); line-height: 1.9; font-size: 1rem; margin-top: 20px;">
+        From our hand-poured candles to our nourishing soaps and glossy
+        lip treats — every product is a labour of love. We're not just
+        selling products, we're sharing a lifestyle rooted in self-care,
+        nature and intentional living.
+      </p>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section style="padding: 0 20px 80px; background: var(--warm-white);">
+    <div class="section-header">
+      <h2>What We Stand For</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="about-values">
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <h3>All Natural</h3>
+        <p>Clean ingredients. No harsh chemicals. Always honest about what's inside.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤲</div>
+        <h3>Handcrafted</h3>
+        <p>Every item is made by hand — slowly, carefully and with full attention.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌍</div>
+        <h3>Local Love</h3>
+        <p>Proudly made in Pretoria. Supporting local, one product at a time.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💛</div>
+        <h3>Self-Care First</h3>
+        <p>We make products that turn your everyday routine into a ritual.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: var(--dark-brown); padding: 80px 20px; text-align: center;">
+    <h2 style="font-family: var(--font-heading); font-size: 2rem;
+                color: var(--light-gold); margin-bottom: 16px;">
+      Ready to experience the difference?
+    </h2>
+    <p style="color: var(--cream); opacity: 0.85; margin-bottom: 30px; max-width: 450px; margin-left:auto; margin-right:auto;">
+      Explore our full collection of natural handcrafted goods. Made for you.
+    </p>
+    <a href="shop.html" class="btn btn-gold">Shop Now 🌿</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leish Essentials</h3>
+        <p>Elevate your essence made. For the skin, soul and senses.</p>
+                <div class="social-links" style="margin-top:20px;">
+          <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt" aria-label="Instagram">📸</a>
+          <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="specials.html">Specials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="policies.html#shipping">Shipping & Delivery</a></li>
+          <li><a href="policies.html#returns">Returns Policy</a></li>
+          <li><a href="policies.html#privacy">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Leish Essentials. All rights reserved. Elevate your essence.</p>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script src="search.js"></script>
+</body>
+</html>

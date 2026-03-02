@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Placed — Leish Essentials</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    .success-page {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      background: var(--cream);
+    }
+
+    .success-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 60px 40px;
+      max-width: 540px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 60px var(--shadow);
+    }
+
+    .success-emoji {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .success-card h1 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      color: var(--dark-brown);
+      margin-bottom: 14px;
+    }
+
+    .success-card p {
+      color: var(--text-medium);
+      line-height: 1.8;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+    }
+
+    .success-steps {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 24px 0;
+      text-align: left;
+    }
+
+    .success-steps p {
+      margin-bottom: 10px;
+      font-size: 0.88rem;
+      color: var(--text-medium);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .success-steps p:last-child {
+      margin-bottom: 0;
+    }
+
+    .success-steps .step-icon {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .success-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 500px) {
+      .success-card {
+        padding: 40px 24px;
+      }
+
+      .success-card h1 {
+        font-size: 1.6rem;
+      }
+
+      .success-buttons {
+        flex-direction: column;
+      }
+
+      .success-buttons a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Leish <span>Essentials</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="cart.html" class="cart-icon">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Us</a>
+      <a href="specials.html">Specials</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="cart.html">🛒 Cart</a>
+    </div>
+  </nav>
+
+  <!-- SUCCESS PAGE -->
+  <div class="success-page">
+    <div class="success-card">
+
+      <span class="success-emoji">🎉</span>
+
+      <h1>Order Placed!</h1>
+
+      <p>
+        Thank you so much for your order. We've received it and
+        we're already excited to get it ready for you! 💛
+      </p>
+
+      <div class="success-steps">
+        <p>
+          <span class="step-icon">📧</span>
+          <span>Check your email — we'll send you our
+          <strong>banking details</strong> and your
+          <strong>order summary</strong> shortly.</span>
+        </p>
+        <p>
+          <span class="step-icon">💸</span>
+          <span>Make your <strong>EFT payment</strong> using
+          the banking details we send you. Use your
+          <strong>name as the reference</strong>.</span>
+        </p>
+        <p>
+          <span class="step-icon">📦</span>
+          <span>Once payment is confirmed, we'll prepare
+          your order and dispatch it within
+          <strong>2–3 business days</strong>.</span>
+        </p>
+        <p>
+          <span class="step-icon">🚚</span>
+          <span>You'll receive a <strong>tracking number</strong>
+          via email once your parcel is on its way!</span>
+        </p>
+      </div>
+
+      <p style="font-size:0.85rem; color:var(--text-light);">
+        Questions? Reach out via our
+        <a href="contact.html"
+           style="color:var(--gold); font-weight:700;">
+          Contact Page
+        </a>
+        and we'll help right away. 🌿
+      </p>
+
+      <div class="success-buttons">
+        <a href="shop.html" class="btn btn-primary">
+          Continue Shopping 🌿
+        </a>
+        <a href="index.html" class="btn btn-outline">
+          Back to Home
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leish Essentials</h3>
+        <p>Natural handcrafted goods made with love in Pretoria, Gauteng.</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt" aria-label="Instagram">📸</a>
+          <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="specials.html">Specials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="customer-service.html#shipping">Shipping & Delivery</a></li>
+          <li><a href="customer-service.html#returns">Returns Policy</a></li>
+          <li><a href="customer-service.html#privacy">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="customer-service.html">Customer Service</a></li>
+          <li><a href="cart.html">🛒 My Cart</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Leish Essentials. All rights reserved. Made with 💛 in Pretoria.</p>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script>
+    // Clear the cart after successful order
+    localStorage.removeItem('leish_cart');
+    updateCartCount();
+  </script>
+</body>
+</html>

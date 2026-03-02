@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Leish Essentials — Elevate your essence</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Leish <span>Essentials</span></a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+
+      <div class="nav-right">
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off"/>
+        </div>
+        <a href="cart.html" class="cart-icon">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Results -->
+    <div class="search-results" id="searchResults"></div>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Us</a>
+      <a href="specials.html">Specials</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="cart.html">🛒 Cart</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">✦ Handcrafted in Pretoria ✦</p>
+      <h1>Elevate your essence with <em>love & intention</em></h1>
+      <p>Candles, soaps, oils and more — all crafted from nature's finest ingredients, just for you.</p>
+      <div class="hero-buttons">
+        <a href="shop.html" class="btn btn-primary">Shop the Collection</a>
+        <a href="about.html" class="btn btn-outline">Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEET THE PRODUCTS (Home Feature) -->
+  <section style="padding: 80px 20px; background: var(--warm-white);">
+    <div class="section-header">
+      <p class="hero-eyebrow">✦ Our Collection ✦</p>
+      <h2>Meet the Products</h2>
+      <div class="section-divider"></div>
+      <p>Each product is made with care. Click to be introduced 🌿</p>
+    </div>
+
+    <div class="product-grid" id="homeProductGrid"></div>
+  </section>
+
+  <!-- VALUES STRIP -->
+  <section style="background: var(--cream); padding: 60px 20px;">
+    <div class="about-values">
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <h3>All Natural</h3>
+        <p>No harsh chemicals. Only clean, natural ingredients you can trust.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤲</div>
+        <h3>Handcrafted</h3>
+        <p>Every item is made by hand with love.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">💛</div>
+        <h3>Made for You</h3>
+        <p>Products designed to make your everyday routine feel like self-care.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">📦</div>
+        <h3>Delivered to You</h3>
+        <p>We deliver across Gauteng and nationwide across South Africa.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leish Essentials</h3>
+        <p>Elevate your essence made. For the skin, soul and senses.</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt" aria-label="Instagram ">📸</a>
+          <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="shop.html?category=candles">Candles</a></li>
+          <li><a href="shop.html?category=soaps">Soaps</a></li>
+          <li><a href="shop.html?category=lip-gloss">Lip Gloss</a></li>
+          <li><a href="specials.html">Specials</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+  <h4>Help</h4>
+  <ul>
+    <li><a href="customer-service.html#shipping">Shipping & Delivery</a></li>
+    <li><a href="customer-service.html#returns">Returns Policy</a></li>
+    <li><a href="customer-service.html#privacy">Privacy Policy</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+</div>
+<div class="footer-col">
+  <h4>Info</h4>
+  <ul>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="customer-service.html">Customer Service</a></li>
+    <li><a href="cart.html
+">🛒 My Cart</a></li>
+  </ul>
+</div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Leish Essentials. All rights reserved. Elevate your essence.</p>
+    </div>
+  </footer>
+
+  <!-- MEET THE PRODUCT MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-paper">
+      <button class="modal-close" id="modalClose">✕</button>
+      <img src="" alt="" class="modal-image" id="modalImage"/>
+      <p class="modal-category" id="modalCategory"></p>
+      <h2 class="modal-name" id="modalName"></h2>
+      <div class="modal-divider"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-details" id="modalDetails"></div>
+      <p class="modal-price" id="modalPrice"></p>
+      <button class="btn btn-gold" id="modalAddToCart">Add to Cart 🛒</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script src="search.js"></script>
+  <script>
+    // ── Home page: render "Meet the Product" cards ──
+    const homeGrid = document.getElementById('homeProductGrid');
+
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+
+      const badge = product.comingSoon
+        ? '<span class="product-card-badge badge-coming-soon">Coming Soon</span>'
+        : product.isNew
+          ? '<span class="product-card-badge badge-new">New</span>'
+          : product.isSpecial
+            ? '<span class="product-card-badge badge-special">Special</span>'
+            : '';
+
+      card.innerHTML = `
+        ${badge}
+        <img src="${product.image}" alt="${product.name}" class="product-card-image"/>
+        ${product.comingSoon ? '<div class="coming-soon-overlay">Coming Soon ✨</div>' : ''}
+        <div class="product-card-body">
+          <p class="product-card-category">${product.category.replace('-', ' ')}</p>
+          <h3 class="product-card-name">${product.name}</h3>
+          <p class="product-card-desc">${product.description}</p>
+          <div class="product-card-footer">
+            <span class="product-price">R${product.isSpecial ? product.specialPrice : product.price}</span>
+            ${!product.comingSoon
+              ? `<button class="btn btn-outline" style="padding:8px 16px;font-size:0.8rem;"
+                   onclick="openModal(${product.id})">Meet the Product 🌿</button>`
+              : `<button class="btn btn-outline" style="padding:8px 16px;font-size:0.8rem;opacity:0.5;" disabled>Coming Soon</button>`
+            }
+          </div>
+        </div>
+      `;
+      homeGrid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Cart — Leish Essentials</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Leish <span>Essentials</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="cart.html" class="cart-icon">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Us</a>
+      <a href="specials.html">Specials</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </nav>
+
+  <!-- CART PAGE -->
+  <div class="cart-page">
+    <h1>My Cart 🛒</h1>
+
+    <!-- Empty State -->
+    <div class="cart-empty" id="cartEmpty" style="display:none;">
+      <p style="font-size:3rem;">🛒</p>
+      <p>Your cart is empty!</p>
+      <a href="shop.html" class="btn btn-primary">Start Shopping 🌿</a>
+    </div>
+
+    <!-- Cart Items -->
+    <div id="cartItemsList"></div>
+
+    <!-- Cart Summary -->
+    <div class="cart-summary" id="cartSummary" style="display:none;">
+      <h3>Order Summary</h3>
+
+      <!-- Shipping Selector -->
+      <div class="shipping-selector">
+        <label for="locationSelect">📍 Your Location</label>
+        <select id="locationSelect">
+          <option value="">-- Select your location --</option>
+          <option value="gauteng">Within Gauteng</option>
+          <option value="national">Outside Gauteng (National)</option>
+        </select>
+      </div>
+
+      <div class="shipping-selector" id="shippingTypeWrapper" style="display:none;">
+        <label for="shippingType">🚚 Shipping Type</label>
+        <select id="shippingType">
+          <option value="standard">Standard Shipping</option>
+          <option value="premium">Premium / Express Shipping ⚡</option>
+        </select>
+      </div>
+
+      <!-- Summary Rows -->
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="summarySubtotal">R0</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Shipping</span>
+        <span id="summaryShipping">Select location above</span>
+      </div>
+      <div class="cart-summary-row total">
+        <span>Total</span>
+        <span id="summaryTotal">R0</span>
+      </div>
+
+      <!-- Shipping Info -->
+      <div id="shippingInfo" style="display:none; background:var(--cream);
+           border-radius:8px; padding:12px 16px; margin:16px 0;
+           font-size:0.85rem; color:var(--text-medium); line-height:1.6;">
+      </div>
+
+      <!-- Place Order Button -->
+      <button class="btn btn-gold" id="placeOrderBtn"
+              style="width:100%; padding:16px; font-size:1rem; margin-top:16px;"
+              disabled>
+        Place Order — Fill in Your Details 📋
+      </button>
+
+      <p style="font-size:0.8rem; color:var(--text-light); text-align:center;
+                margin-top:12px; line-height:1.6;">
+        When you complete your order. We'll email you our banking details and delivery estimate. 💛
+      </p>
+
+      <!-- Hidden form field for order items (passed to Google Form via URL) -->
+      <input type="hidden" id="order_items" name="order_items"/>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leish Essentials</h3>
+        <p>Natural handcrafted goods made with love in Pretoria, Gauteng.</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt" aria-label="Instagram">📸</a>
+          <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="specials.html">Specials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="policies.html#shipping">Shipping & Delivery</a></li>
+          <li><a href="policies.html#returns">Returns Policy</a></li>
+          <li><a href="policies.html#privacy">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Leish Essentials. All rights reserved. Elevate your essence.</p>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+ <script src="search.js"></script>
+      <!-- ORDER FORM (hidden, submitted by JS) -->
+<!-- 🔧 Replace YOUR_FORMSPREE_ID with your actual ID e.g. xbjvkzpp -->
+<form
+  id="hiddenOrderForm"
+  action="https://formspree.io/f/mreajwnz"
+  method="POST"
+  style="display:none;">
+  <input type="text"  name="Customer Name"      id="f_name"/>
+  <input type="email" name="Customer Email"      id="f_email"/>
+  <input type="text"  name="Delivery Address"    id="f_address"/>
+  <input type="text"  name="City"                id="f_city"/>
+  <input type="text"  name="Province"            id="f_province"/>
+  <input type="text"  name="Postal Code"         id="f_postal"/>
+  <input type="text"  name="Phone Number"        id="f_phone"/>
+  <input type="text"  name="Shipping Option"     id="f_shipping"/>
+  <input type="text"  name="Shipping Cost"       id="f_shipping_cost"/>
+  <textarea           name="Order Items"         id="f_items"></textarea>
+  <input type="text"  name="Order Subtotal"      id="f_subtotal"/>
+  <input type="text"  name="Order Total"         id="f_total"/>
+  <textarea           name="Special Notes"       id="f_notes"></textarea>
+  <input type="hidden" name="_subject"           id="f_subject"/>
+  <input type="hidden" name="_next"
+         value="order-success.html"/>
+</form>
+
+<!-- ORDER DETAILS MODAL -->
+<div class="modal-overlay" id="orderModal"
+  style="z-index: 9999;">
+  <div class="modal-paper" style="max-width:560px; max-height:90vh; overflow-y:auto;">
+    <h2 style="font-family:var(--font-heading); color:var(--dark-brown);
+               font-size:1.5rem; margin-bottom:6px;">
+      Almost there! 🌿
+    </h2>
+    <p style="color:var(--text-light); font-size:0.88rem; margin-bottom:24px;">
+      Fill in your details below so we can deliver your order to you.
+    </p>
+
+    <div class="form-group">
+      <label for="o_name">Full Name *</label>
+      <input type="text" id="o_name" placeholder="e.g. Lerato Dlamini" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="o_email">Email Address *</label>
+      <input type="email" id="o_email" placeholder="you@example.com" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="o_phone">Phone Number *</label>
+      <input type="tel" id="o_phone" placeholder="e.g. 071 234 5678" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="o_address">Street Address *</label>
+      <input type="text" id="o_address"
+             placeholder="e.g. 12 Main Road, Apt 3" required/>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
+      <div class="form-group">
+        <label for="o_city">City / Town *</label>
+        <input type="text" id="o_city" placeholder="e.g. Pretoria" required/>
+      </div>
+      <div class="form-group">
+        <label for="o_province">Province *</label>
+        <select id="o_province">
+          <option value="">-- Select --</option>
+          <option value="Gauteng">Gauteng</option>
+          <option value="Western Cape">Western Cape</option>
+          <option value="KwaZulu-Natal">KwaZulu-Natal</option>
+          <option value="Eastern Cape">Eastern Cape</option>
+          <option value="Limpopo">Limpopo</option>
+          <option value="Mpumalanga">Mpumalanga</option>
+          <option value="North West">North West</option>
+          <option value="Free State">Free State</option>
+          <option value="Northern Cape">Northern Cape</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="o_postal">Postal Code *</label>
+      <input type="text" id="o_postal" placeholder="e.g. 0001" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="o_notes">Special Notes (optional)</label>
+      <textarea id="o_notes" rows="3"
+        placeholder="e.g. Leave at the gate, specific instructions etc."
+        style="height:80px;"></textarea>
+    </div>
+
+    <!-- Order Summary Preview -->
+    <div style="background:var(--cream); border:1px solid var(--border);
+                border-radius:12px; padding:16px; margin:16px 0;">
+      <p style="font-size:0.78rem; text-transform:uppercase; letter-spacing:1.5px;
+                color:var(--text-light); margin-bottom:10px;">Your Order Summary</p>
+      <div id="modalOrderSummary"
+           style="font-size:0.85rem; color:var(--text-medium); line-height:1.8;">
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div style="display:flex; gap:12px; margin-top:8px;">
+      <button onclick="closeOrderModal()"
+        class="btn btn-outline"
+        style="flex:1; padding:14px;">
+        ← Back to Cart
+      </button>
+      <button onclick="submitOrder()"
+        class="btn btn-gold"
+        id="submitOrderBtn"
+        style="flex:2; padding:14px; font-size:1rem;">
+        Place Order 💛
+      </button>
+    </div>
+
+    <p style="font-size:0.75rem; color:var(--text-light); text-align:center;
+              margin-top:14px; line-height:1.6;">
+      🔒 Your details are secure. We'll email you banking details
+      and your order confirmation right away.
+    </p>
+  </div>
+</div>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script>
+  // ════════════════════════════════════════
+  //   CART PAGE — Full Logic
+  // ════════════════════════════════════════
+
+  const cartItemsList       = document.getElementById('cartItemsList');
+  const cartEmpty           = document.getElementById('cartEmpty');
+  const cartSummaryEl       = document.getElementById('cartSummary');
+  const summarySubtotal     = document.getElementById('summarySubtotal');
+  const summaryShipping     = document.getElementById('summaryShipping');
+  const summaryTotal        = document.getElementById('summaryTotal');
+  const locationSelect      = document.getElementById('locationSelect');
+  const shippingTypeWrapper = document.getElementById('shippingTypeWrapper');
+  const shippingTypeEl      = document.getElementById('shippingType');
+  const shippingInfoEl      = document.getElementById('shippingInfo');
+  const placeOrderBtn       = document.getElementById('placeOrderBtn');
+
+  let cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
+  let currentShippingCost   = 0;
+  let currentShippingLabel  = '';
+
+  // ── Get Subtotal ──
+  function getSubtotal() {
+    return cart.reduce((total, item) => {
+      const product = products.find(p => p.id === item.id);
+      if (!product) return total;
+      const price = product.isSpecial ? product.specialPrice : product.price;
+      return total + (price * item.qty);
+    }, 0);
+  }
+
+  // ── Render Cart ──
+  function renderCartPage() {
+    cartItemsList.innerHTML = '';
+    cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
+
+    if (cart.length === 0) {
+      cartEmpty.style.display    = 'block';
+      cartSummaryEl.style.display = 'none';
+      return;
+    }
+
+    cartEmpty.style.display    = 'none';
+    cartSummaryEl.style.display = 'block';
+
+    cart.forEach(item => {
+      const product = products.find(p => p.id === item.id);
+      if (!product) return;
+
+      const price     = product.isSpecial ? product.specialPrice : product.price;
+      const itemTotal = price * item.qty;
+
+      const cartItemEl = document.createElement('div');
+      cartItemEl.className = 'cart-item';
+      cartItemEl.innerHTML = `
+        <img src="${product.image}" alt="${product.name}"
+             style="width:80px; height:80px; object-fit:cover;
+                    border-radius:10px; flex-shrink:0;"/>
+        <div class="cart-item-info">
+          <h3>${product.name}</h3>
+          <p style="color:var(--text-light); font-size:0.85rem;">
+            ${product.category.replace(/-/g,' ')} · R${price} each
+          </p>
+          <div style="display:flex; align-items:center; gap:12px; margin-top:10px;">
+            <button onclick="changeQty(${product.id}, -1)"
+              style="width:28px; height:28px; border-radius:50%;
+                     border:1px solid var(--border); background:var(--cream);
+                     cursor:pointer; font-size:1rem; display:flex;
+                     align-items:center; justify-content:center;">−</button>
+            <span style="font-weight:700; min-width:20px;
+                         text-align:center;">${item.qty}</span>
+            <button onclick="changeQty(${product.id}, 1)"
+              style="width:28px; height:28px; border-radius:50%;
+                     border:1px solid var(--border); background:var(--cream);
+                     cursor:pointer; font-size:1rem; display:flex;
+                     align-items:center; justify-content:center;">+</button>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column;
+                    align-items:flex-end; gap:8px;">
+          <span class="cart-item-price">R${itemTotal}</span>
+          <button class="cart-item-remove"
+                  onclick="removeFromCart(${product.id})"
+                  title="Remove item">✕</button>
+        </div>
+      `;
+      cartItemsList.appendChild(cartItemEl);
+    });
+
+    updateSummary();
+  }
+
+  // ── Change Quantity ──
+  function changeQty(productId, delta) {
+    cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
+    const item = cart.find(i => i.id === productId);
+    if (!item) return;
+    item.qty += delta;
+    if (item.qty <= 0) cart = cart.filter(i => i.id !== productId);
+    localStorage.setItem('leish_cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCartPage();
+  }
+
+  // ── Remove Item ──
+  function removeFromCart(productId) {
+    cart = cart.filter(i => i.id !== productId);
+    localStorage.setItem('leish_cart', JSON.stringify(cart));
+    updateCartCount();
+    renderCartPage();
+    showToast('Item removed 🗑️');
+  }
+
+  // ── Update Summary ──
+  function updateSummary() {
+    const subtotal = getSubtotal();
+    const total    = subtotal + currentShippingCost;
+    summarySubtotal.textContent = `R${subtotal}`;
+    summaryTotal.textContent    = `R${total}`;
+  }
+
+  // ── Shipping Selectors ──
+  locationSelect.addEventListener('change', () => {
+    if (locationSelect.value) {
+      shippingTypeWrapper.style.display = 'block';
+    } else {
+      shippingTypeWrapper.style.display = 'none';
+      currentShippingCost  = 0;
+      currentShippingLabel = '';
+      summaryShipping.textContent = 'Select location above';
+      placeOrderBtn.disabled = true;
+      shippingInfoEl.style.display = 'none';
+    }
+    calculateShipping();
+  });
+
+  shippingTypeEl.addEventListener('change', calculateShipping);
+
+  function calculateShipping() {
+    const loc  = locationSelect.value;
+    const type = shippingTypeEl.value;
+    if (!loc) return;
+
+    if (loc === 'gauteng' && type === 'standard') {
+      currentShippingCost  = shippingRates.gauteng_standard;
+      currentShippingLabel = 'Within Gauteng — Standard (2–4 business days)';
+      showShippingInfo('📦 Standard delivery within Gauteng — estimated 2–4 business days.');
+    } else if (loc === 'gauteng' && type === 'premium') {
+      currentShippingCost  = shippingRates.gauteng_premium;
+      currentShippingLabel = 'Within Gauteng — Premium/Express (1–2 business days)';
+      showShippingInfo('⚡ Premium delivery within Gauteng — estimated 1–2 business days.');
+    } else if (loc === 'national' && type === 'standard') {
+      currentShippingCost  = shippingRates.national_standard;
+      currentShippingLabel = 'Outside Gauteng — Standard (3–5 business days)';
+      showShippingInfo('📦 Standard delivery outside Gauteng — estimated 3–5 business days.');
+    } else if (loc === 'national' && type === 'premium') {
+      currentShippingCost  = shippingRates.national_premium;
+      currentShippingLabel = 'Outside Gauteng — Premium/Express (2–3 business days)';
+      showShippingInfo('⚡ Premium delivery outside Gauteng — estimated 2–3 business days.');
+    }
+
+    summaryShipping.textContent = `R${currentShippingCost}`;
+    updateSummary();
+    placeOrderBtn.disabled = false;
+  }
+
+  function showShippingInfo(message) {
+    shippingInfoEl.style.display = 'block';
+    shippingInfoEl.textContent   = message;
+  }
+
+  // ── Open Order Modal ──
+  placeOrderBtn.addEventListener('click', () => {
+    if (cart.length === 0) return;
+
+    // Build order     // Build order summary for modal preview
+    const modalSummary = document.getElementById('modalOrderSummary');
+    let summaryHTML = '';
+
+    cart.forEach(item => {
+      const product = products.find(p => p.id === item.id);
+      if (!product) return;
+      const price     = product.isSpecial ? product.specialPrice : product.price;
+      const itemTotal = price * item.qty;
+      summaryHTML += `
+        <div style="display:flex; justify-content:space-between;
+                    padding:4px 0; border-bottom:1px solid var(--border);">
+          <span>${product.name} × ${item.qty}</span>
+          <span style="font-weight:700;">R${itemTotal}</span>
+        </div>`;
+    });
+
+    const subtotal = getSubtotal();
+    const total    = subtotal + currentShippingCost;
+
+    summaryHTML += `
+      <div style="display:flex; justify-content:space-between;
+                  padding:6px 0; margin-top:4px;">
+        <span>Shipping</span>
+        <span>R${currentShippingCost}</span>
+      </div>
+      <div style="display:flex; justify-content:space-between;
+                  padding:6px 0; border-top:2px solid var(--border);
+                  margin-top:4px; font-weight:700;
+                  color:var(--dark-brown); font-size:1rem;">
+        <span>Total</span>
+        <span>R${total}</span>
+      </div>`;
+
+    modalSummary.innerHTML = summaryHTML;
+
+    // Open the order modal
+    document.getElementById('orderModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  // ── Close Order Modal ──
+  function closeOrderModal() {
+    document.getElementById('orderModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  window.closeOrderModal = closeOrderModal;
+
+  // ── Submit Order ──
+  function submitOrder() {
+    // ── Validate fields ──
+    const name     = document.getElementById('o_name').value.trim();
+    const email    = document.getElementById('o_email').value.trim();
+    const phone    = document.getElementById('o_phone').value.trim();
+    const address  = document.getElementById('o_address').value.trim();
+    const city     = document.getElementById('o_city').value.trim();
+    const province = document.getElementById('o_province').value.trim();
+    const postal   = document.getElementById('o_postal').value.trim();
+    const notes    = document.getElementById('o_notes').value.trim();
+
+    if (!name || !email || !phone || !address || !city || !province || !postal) {
+      showToast('⚠️ Please fill in all required fields!', 'error');
+      return;
+    }
+
+    // ── Build order items string ──
+    let itemLines = '';
+    cart.forEach(item => {
+      const product = products.find(p => p.id === item.id);
+      if (!product) return;
+      const price     = product.isSpecial ? product.specialPrice : product.price;
+      const itemTotal = price * item.qty;
+      itemLines +=
+        `${product.name} x${item.qty} @ R${price} each = R${itemTotal}\n`;
+    });
+
+    const subtotal = getSubtotal();
+    const total    = subtotal + currentShippingCost;
+
+    // ── Fill hidden form fields ──
+    document.getElementById('f_name').value     = name;
+    document.getElementById('f_email').value    = email;
+    document.getElementById('f_phone').value    = phone;
+    document.getElementById('f_address').value  = address;
+    document.getElementById('f_city').value     = city;
+    document.getElementById('f_province').value = province;
+    document.getElementById('f_postal').value   = postal;
+    document.getElementById('f_notes').value    = notes || 'None';
+    document.getElementById('f_shipping').value = currentShippingLabel;
+    document.getElementById('f_shipping_cost').value = `R${currentShippingCost}`;
+    document.getElementById('f_subtotal').value = `R${subtotal}`;
+    document.getElementById('f_total').value    = `R${total}`;
+    document.getElementById('f_subject').value  =
+      `🛒 New Order from ${name} — R${total}`;
+
+    document.getElementById('f_items').value =
+      itemLines +
+      `\n─────────────────────\n` +
+      `Subtotal : R${subtotal}\n` +
+      `Shipping : ${currentShippingLabel} — R${currentShippingCost}\n` +
+      `─────────────────────\n` +
+      `TOTAL    : R${total}`;
+
+    // ── Show loading state ──
+    const btn = document.getElementById('submitOrderBtn');
+    btn.textContent = 'Placing Order... ⏳';
+    btn.disabled    = true;
+
+    // ── Submit hidden form ──
+    document.getElementById('hiddenOrderForm').submit();
+  }
+
+  window.submitOrder = submitOrder;
+
+  // ── Init ──
+  renderCartPage();
+  updateCartCount();
+</script>
+ </script>
+</body>
+</html>

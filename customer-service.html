@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Service — Leish Essentials</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+
+    /* ── PAGE HERO ── */
+    .cs-hero {
+      background: linear-gradient(135deg, var(--warm-white) 0%, #EDE0D4 100%);
+      padding: 70px 20px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cs-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--dark-brown);
+      margin-bottom: 14px;
+    }
+
+    .cs-hero p {
+      color: var(--text-medium);
+      max-width: 500px;
+      margin: 14px auto 0;
+      line-height: 1.7;
+    }
+
+    /* ── QUICK LINKS GRID ── */
+    .cs-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 60px 20px 20px;
+    }
+
+    .cs-quick-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .cs-quick-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px var(--shadow);
+      border-color: var(--gold);
+    }
+
+    .cs-quick-card .cs-icon {
+      font-size: 2.2rem;
+      margin-bottom: 12px;
+    }
+
+    .cs-quick-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--dark-brown);
+      margin-bottom: 6px;
+    }
+
+    .cs-quick-card p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* ── SECTION LABEL ── */
+    .cs-section-label {
+      max-width: 1000px;
+      margin: 50px auto 20px;
+      padding: 0 20px;
+    }
+
+    .cs-section-label h2 {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--dark-brown);
+      margin-bottom: 6px;
+    }
+
+    .cs-section-label p {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    /* ── ACCORDION WRAPPER ── */
+    .cs-accordion-wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+
+    /* ── ACCORDION OVERRIDES FOR CS PAGE ── */
+    .cs-accordion-wrapper .accordion-item {
+      margin-bottom: 14px;
+      border-radius: 16px;
+    }
+
+    .cs-accordion-wrapper .accordion-header {
+      padding: 22px 28px;
+      font-size: 1.05rem;
+    }
+
+    .cs-accordion-wrapper .accordion-header .cs-acc-icon {
+      font-size: 1.3rem;
+      margin-right: 14px;
+    }
+
+    .cs-accordion-wrapper .accordion-header .header-left {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .cs-accordion-wrapper .accordion-body-inner {
+      padding: 0 28px 28px;
+    }
+
+    .cs-accordion-wrapper .accordion-body-inner h4 {
+      font-size: 0.95rem;
+      margin: 18px 0 8px;
+      color: var(--dark-brown);
+    }
+
+    .cs-accordion-wrapper .accordion-body-inner p,
+    .cs-accordion-wrapper .accordion-body-inner li {
+      font-size: 0.9rem;
+      color: var(--text-medium);
+      line-height: 1.8;
+    }
+
+    .cs-accordion-wrapper .accordion-body-inner ul {
+      padding-left: 20px;
+      margin-top: 8px;
+    }
+
+    .cs-accordion-wrapper .accordion-body-inner ul li {
+      margin-bottom: 8px;
+    }
+
+    /* ── HIGHLIGHT BOX ── */
+    .highlight-box {
+      background: var(--cream);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 0.88rem;
+      color: var(--text-medium);
+      line-height: 1.7;
+    }
+
+    /* ── SHIPPING RATE TABLE ── */
+    .rate-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.88rem;
+    }
+
+    .rate-table th {
+      background: var(--brown);
+      color: var(--cream);
+      padding: 10px 16px;
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .rate-table th:first-child {
+      border-radius: 8px 0 0 0;
+    }
+
+    .rate-table th:last-child {
+      border-radius: 0 8px 0 0;
+    }
+
+    .rate-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-medium);
+    }
+
+    .rate-table tr:nth-child(even) td {
+      background: var(--cream);
+    }
+
+    .rate-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .rate-table .premium-row td {
+      color: var(--brown);
+      font-weight: 700;
+    }
+
+    /* ── CTA BANNER ── */
+    .cs-cta {
+      background: linear-gradient(135deg, var(--dark-brown), var(--brown));
+      padding: 70px 20px;
+      text-align: center;
+    }
+
+    .cs-cta h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--light-gold);
+      margin-bottom: 14px;
+    }
+
+    .cs-cta p {
+      color: var(--cream);
+      opacity: 0.85;
+      max-width: 450px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .cs-cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .cs-quick-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 40px 16px 10px;
+      }
+
+      .cs-accordion-wrapper .accordion-header {
+        padding: 18px 20px;
+        font-size: 0.95rem;
+      }
+
+      .cs-accordion-wrapper .accordion-body-inner {
+        padding: 0 20px 24px;
+      }
+
+      .rate-table th,
+      .rate-table td {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Leish <span>Essentials</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="specials.html">Specials</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="searchInput"
+                 placeholder="Search products..." autocomplete="off"/>
+        </div>
+        <a href="cart.html" class="cart-icon">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About Us</a>
+      <a href="specials.html">Specials</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="cart.html">🛒 Cart</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="cs-hero">
+    <p class="hero-eyebrow">✦ We've Got You ✦</p>
+    <h1>Customer Service</h1>
+    <div class="section-divider"></div>
+    <p>
+      Everything you need to know about ordering, shipping, returns
+      and your privacy — all in one place. 🌿
+    </p>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <section style="background: var(--cream);">
+    <div class="cs-quick-grid">
+      <a class="cs-quick-card" href="#how-to-order" onclick="openAccordion('how-to-order')">
+        <div class="cs-icon">🛒</div>
+        <h3>How to Order</h3>
+        <p>Step-by-step guide to placing your order</p>
+      </a>
+      <a class="cs-quick-card" href="#shipping" onclick="openAccordion('shipping')">
+        <div class="cs-icon">📦</div>
+        <h3>Shipping & Delivery</h3>
+        <p>Rates, timeframes and how it all works</p>
+      </a>
+      <a class="cs-quick-card" href="#returns" onclick="openAccordion('returns')">
+        <div class="cs-icon">🔄</div>
+        <h3>Returns Policy</h3>
+        <p>What can be returned and how to do it</p>
+      </a>
+      <a class="cs-quick-card" href="#privacy" onclick="openAccordion('privacy')">
+        <div class="cs-icon">🔒</div>
+        <h3>Privacy Policy</h3>
+        <p>How we handle and protect your data</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- POLICIES ACCORDION -->
+  <section style="background: var(--cream); padding-top: 10px;">
+
+    <div class="cs-section-label">
+      <h2>All You Need to Know</h2>
+      <p>Click any section to expand it 👇</p>
+    </div>
+
+    <div class="cs-accordion-wrapper">
+
+      <!-- HOW TO ORDER -->
+      <div class="accordion-item" id="how-to-order">
+        <button class="accordion-header">
+          <span class="header-left">
+            <span class="cs-acc-icon">🛒</span>
+            How to Order
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+
+            <div class="highlight-box">
+              🌿 We keep it simple! No account needed, no complicated checkout.
+              Just browse, add to cart, fill in a form and we handle the rest.
+            </div>
+
+            <h4>Step 1 — Browse & Add to Cart</h4>
+            <p>Head to our <a href="shop.html" style="color:var(--gold); font-weight:700;">
+            Shop page</a> and click <strong>"Add to Cart 🛒"</strong> on any
+            product you love. You can add as many items as you like —
+            your cart is saved automatically.</p>
+
+            <h4>Step 2 — Review Your Cart</h4>
+            <p>Click the 🛒 icon at the top of the page to view your cart.
+            Here you can adjust quantities, remove items and choose your
+            shipping option.</p>
+
+            <h4>Step 3 — Choose Your Shipping</h4>
+            <p>Select whether you're based <strong>within Gauteng</strong> or
+            <strong>outside Gauteng</strong>, then choose between
+            <strong>Standard</strong> or <strong>Premium/Express</strong> shipping.
+            Your delivery fee will be calculated automatically.</p>
+
+            <h4>Step 4 — Place Your Order</h4>
+            <p>Click <strong>"Place Order"</strong> and you'll be required to fill in your name, email address,phone number, delivery
+            address and any special notes.</p>
+
+            <h4>Step 5 — Receive Your Confirmation</h4>
+            <p>After submitting your form, we'll email you:</p>
+            <ul>
+              <li>Your full order summary</li>
+              <li>Our banking details for payment</li>
+              <li>An estimated delivery timeframe</li>
+            </ul>
+
+            <h4>Step 6 — Make Your Payment</h4>
+            <p>Pay via <strong>EFT</strong> using the banking details we send you.
+            Please use your <strong>name as the payment reference</strong>
+            so we can match your payment to your order.</p>
+
+            <h4>Step 7 — We Get to Work! 🌿</h4>
+            <p>Once payment is confirmed, we prepare your order with love
+            and dispatch it within <strong>5-7 business days</strong>.
+                        You'll receive a tracking number via email once your order is on its way.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- SHIPPING & DELIVERY -->
+      <div class="accordion-item" id="shipping">
+        <button class="accordion-header">
+          <span class="header-left">
+            <span class="cs-acc-icon">📦</span>
+            Shipping & Delivery
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+
+            <div class="highlight-box">
+              📍 We're based in Pretoria, Gauteng and we deliver
+              across all of South Africa. Gauteng customers enjoy
+              lower shipping rates and faster delivery times!
+            </div>
+
+            <h4>Processing Time</h4>
+            <p>All orders are processed within <strong>5-7 business days</strong>
+            after payment confirmation. Orders placed on weekends or public
+            holidays will be processed on the next business day.</p>
+
+            <h4>Delivery Rates & Timeframes</h4>
+            <table class="rate-table">
+              <thead>
+                <tr>
+                  <th>Location</th>
+                  <th>Shipping Type</th>
+                  <th>Rate</th>
+                  <th>Est. Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Within Gauteng</td>
+                  <td>Standard 📦</td>
+                  <td><strong>R100</strong></td>
+                  <td>4-5 business days</td>
+                </tr>
+                <tr class="premium-row">
+                  <td>Within Gauteng</td>
+                  <td>Premium / Express ⚡</td>
+                  <td><strong>R150</strong></td>
+                  <td>2-3 business days</td>
+                </tr>
+                <tr>
+                  <td>Outside Gauteng</td>
+                  <td>Standard 📦</td>
+                  <td><strong>R200</strong></td>
+                  <td>5-7 business days</td>
+                </tr>
+                <tr class="premium-row">
+                  <td>Outside Gauteng</td>
+                  <td>Premium / Express ⚡</td>
+                  <td><strong>R250</strong></td>
+                  <td>3-4 business days</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>How Shipping Works</h4>
+            <p>Your shipping fee is calculated automatically in your cart
+            based on your location and chosen shipping type. Once you
+            place your order via our form, delivery is arranged after
+            payment has been received and confirmed.</p>
+
+            <h4>Order Tracking</h4>
+            <p>Once your order has been dispatched, we'll send you a
+            <strong>tracking number via email</strong> so you can
+            follow your parcel's journey all the way to your door.</p>
+
+            <h4>Please Note</h4>
+            <ul>
+              <li>We deliver to <strong>physical addresses only</strong>
+                  — no PO Boxes</li>
+              <li>Leish Essentials is not responsible for delays
+                  caused by the courier</li>
+              <li>Always double-check your delivery address when
+                  placing your order</li>
+              <li>Delivery times are estimates and may vary during
+                  peak periods</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- RETURNS POLICY -->
+      <div class="accordion-item" id="returns">
+        <button class="accordion-header">
+          <span class="header-left">
+            <span class="cs-acc-icon">🔄</span>
+            Returns Policy
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+
+            <div class="highlight-box">
+              💛 We take great pride in every product we make.
+              If something isn't right, we will always do our best
+              to make it right for you.
+            </div>
+
+            <h4>What Can Be Returned</h4>
+            <p>We accept returns under the following circumstances:</p>
+            <ul>
+              <li>Items that arrive <strong>damaged or defective</strong></li>
+              <li><strong>Incorrect items</strong> sent
+                  (wrong product or wrong variant)</li>
+              <li>Items that are <strong>significantly different</strong>
+                  from what was described on our website</li>
+            </ul>
+
+            <h4>What Cannot Be Returned</h4>
+            <p>For hygiene and safety reasons, we cannot accept returns on:</p>
+            <ul>
+              <li>Products that have been <strong>used or opened</strong></li>
+              <li>Items purchased during a <strong>sale or special</strong></li>
+              <li>Items returned <strong>after 7 days</strong> of delivery</li>
+              <li>Items without <strong>original packaging</strong></li>
+            </ul>
+
+            <h4>How to Start a Return</h4>
+            <p>Contact us via our
+            <a href="contact.html" style="color:var(--gold); font-weight:700;">
+            Contact Page</a> within <strong>7 days</strong> of receiving
+            your order. Please include:</p>
+            <ul>
+              <li>Your full name and email address</li>
+              <li>Your order details</li>
+              <li>The reason for the return</li>
+              <li>A clear photo if the item arrived damaged</li>
+            </ul>
+
+            <h4>Return Shipping</h4>
+            <p>Return shipping costs are covered by the
+            <strong>customer</strong> unless the item was damaged
+            or incorrect — in which case we cover the cost.</p>
+
+            <h4>Refunds</h4>
+            <p>Once we receive and inspect the returned item, your
+            refund or replacement will be processed within
+            <strong>5–7 business days</strong>. Refunds are issued
+            via <strong>EFT to your bank account</strong>. Original
+            shipping fees are non-refundable unless the return is
+            due to our error.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- PRIVACY POLICY -->
+      <div class="accordion-item" id="privacy">
+        <button class="accordion-header">
+          <span class="header-left">
+            <span class="cs-acc-icon">🔒</span>
+            Privacy Policy
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-body-inner">
+
+            <div class="highlight-box">
+              🔒 Your privacy matters to us. We are transparent about
+              what we collect, why we collect it and how we use it.
+              We will never sell your information.
+            </div>
+
+            <h4>Information We Collect</h4>
+            <p>When you place an order or contact us, we collect:</p>
+            <ul>
+              <li>Your full name</li>
+              <li>Email address</li>
+              <li>Physical delivery address</li>
+              <li>Order details and any notes you provide</li>
+            </ul>
+
+            <h4>How We Use Your Information</h4>
+            <ul>
+              <li>To process and fulfil your order</li>
+              <li>To communicate with you about your order status</li>
+              <li>To send you your tracking information</li>
+              <li>To respond to any enquiries you send us</li>
+            </ul>
+
+            <h4>What We Do NOT Do</h4>
+            <ul>
+              <li>We do <strong>not</strong> sell your personal
+                  information to any third parties</li>
+              <li>We do <strong>not</strong> store your payment details
+                  — payments are handled via EFT</li>
+              <li>We do <strong>not</strong> send marketing emails
+                  without your consent</li>
+              <li>We do <strong>not</strong> use tracking cookies or
+                  third-party analytics on our website</li>
+            </ul>
+
+            <h4>Data Security</h4>
+            <p>Your information is handled with the utmost care. We use
+            secure, trusted platforms (Formspree and Google Forms) to
+            collect your data. We do not store any sensitive payment
+            information on our end.</p>
+
+            <h4>Cookies & Local Storage</h4>
+            <p>Our website uses <strong>localStorage</strong> only to
+            save your cart items between visits so you don't lose your
+            selections. No tracking cookies or third-party analytics
+            tools are used on this website.</p>
+
+            <h4>Your Rights</h4>
+            <p>You have the right to:</p>
+            <ul>
+              <li>Request access to the personal data we hold about you</li>
+              <li>Request correction of any inaccurate information</li>
+              <li>Request deletion of your personal data</li>
+            </ul>
+            <p>To exercise any of these rights, please contact us via our
+            <a href="contact.html" style="color:var(--gold); font-weight:700;">
+            Contact Page</a>.</p>
+
+            <p style="margin-top:20px; font-size:0.8rem; color:var(--text-light);">
+              Last updated: February 2026
+            </p>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cs-cta">
+    <h2>Still have questions? 💛</h2>
+    <p>
+      We're always happy to help. Reach out and we'll get
+      back to you within 24–48 hours on business days.
+    </p>
+    <div class="cs-cta-buttons">
+      <a href="contact.html" class="btn btn-gold">Contact Us 💬</a>
+      <a href="shop.html" class="btn btn-outline"
+         style="color: var(--cream); border-color: var(--cream);">
+        Shop Now 🌿
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Leish Essentials</h3>
+        <p>Elevate your essence made. For the skin, soul and senses.</p>
+        <div class="social-links" style="margin-top:20px;">
+          <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt" aria-label="Instagram">📸</a>
+          <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa" aria-label="TikTok">🎵</a>
+          <a href="#" aria-label="Facebook">📘</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Products</a></li>
+          <li><a href="specials.html">Specials</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="customer-service.html#shipping">Shipping & Delivery</a></li>
+          <li><a href="customer-service.html#returns">Returns Policy</a></li>
+          <li><a href="customer-service.html#privacy">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="customer-service.html">Customer Service</a></li>
+          <li><a href="cart.html">🛒 My Cart</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Leish Essentials. All rights reserved. Elevate your essence.</p>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="cart.js"></script>
+  <script src="search.js"></script>
+  <script>
+    // ── Accordion Logic ──
+    const accordionItems = document.querySelectorAll('.accordion-item');
+
+    function openAccordion(id) {
+      // Close all first
+      accordionItems.forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.accordion-body').style.maxHeight = null;
+      });
+      // Open target
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('open');
+        const body = target.querySelector('.accordion-body');
+        body.style.maxHeight = body.scrollHeight + 'px';
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+
+    // Make openAccordion available globally (used in quick card onclick)
+    window.openAccordion = openAccordion;
+
+    // Normal click toggle on accordion headers
+    accordionItems.forEach(item => {
+      const header = item.querySelector('.accordion-header');
+      const body   = item.querySelector('.accordion-body');
+
+      header.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        // Close all
+        accordionItems.forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.accordion-body').style.maxHeight = null;
+        });
+        // Toggle clicked
+        if (!isOpen) {
+          item.classList.add('open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // ── Auto open from URL hash ──
+    // e.g. customer-service.html#shipping
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      openAccordion(hash);
+    }
+  </script>
+</body>
+</html>
