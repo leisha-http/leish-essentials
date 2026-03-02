@@ -87,9 +87,9 @@
       <!-- Formspree Form -->
       <!-- 🔧 REPLACE "YOUR_FORMSPREE_ID" with your actual Formspree form ID -->
       <form
-        action="https://formspree.io/f/mreajwnz"
-        method="POST"
-        id="contactForm">
+  id="contactForm">" 
+  action="https://formspree.io/f/mreajwnz"
+  method="POST"
 
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
           <div class="form-group">
@@ -129,11 +129,14 @@
         <input type="hidden" name="_next"
                value="https://www.leishessentials.com/contact.html?sent=true"/>
 
-        <button type="submit" class="btn btn-primary"
-                style="width:100%; padding:16px; font-size:1rem;">
-          Send Message 💛
-        </button>
-      </form>
+        <button type="button" onclick="submitContact()"
+  class="btn btn-primary"
+  id="contactSubmitBtn"
+  style="width:100%; padding:16px;
+         font-size:1rem; margin-top:8px;">
+  Send Message 💛
+</button>
+      </form> 
 
       <!-- Success Message -->
       <div id="successMsg" style="display:none; text-align:center;
@@ -196,6 +199,44 @@
       document.getElementById('contactForm').style.display = 'none';
       document.getElementById('successMsg').style.display = 'block';
     }
+
+function submitContact() {
+    const name    = document.getElementById('firstName').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!name || !email || !subject || !message) {
+      alert('Please fill in all required fields! 🌿');
+      return;
+    }
+
+    const btn = document.getElementById('contactSubmitBtn');
+    btn.textContent = 'Sending... ⏳';
+    btn.disabled    = true;
+
+    const formData = new FormData(document.getElementById('contactForm'));
+
+    fetch('https://formspree.io/f/mreajwnz', {
+      method : 'POST',
+      body   : formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+      if (response.ok) {
+        document.getElementById('formWrapper').style.display = 'none';
+        document.getElementById('successBox').style.display  = 'block';
+      } else {
+        throw new Error('Failed to send');
+      }
+    })
+    .catch(error => {
+      console.error('Contact error:', error);
+      btn.textContent = 'Send Message 💛';
+      btn.disabled    = false;
+      alert('❌ Something went wrong. Please try again!');
+    });
+  }
   </script>
 </body>
 
