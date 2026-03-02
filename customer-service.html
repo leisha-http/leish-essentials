@@ -271,25 +271,21 @@
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
       <div class="nav-right">
-
-  <!-- Desktop search bar -->
-  <div class="search-bar">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2">
-      <circle cx="11" cy="11" r="8"/>
-      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input type="text" id="searchInput"
-           placeholder="Search products..."
-           autocomplete="off"/>
-  </div>
-
-  <!-- Mobile search toggle button -->
-  <button class="mobile-search-btn"
-          id="mobileSearchBtn"
-          aria-label="Search">
-    🔍
-  </button>
+        <div class="search-bar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="searchInput"
+                 placeholder="Search products..." autocomplete="off"/>
+        </div>
+        <a href="cart.html" class="cart-icon">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
     <div class="search-results" id="searchResults"></div>
@@ -385,7 +381,7 @@
             Your delivery fee will be calculated automatically.</p>
 
             <h4>Step 4 — Place Your Order</h4>
-            <p>Click <strong>"Place Order"</strong> and you'll be required to fill in your name, email address,phone number, delivery
+            <p>Click <strong>"Place Order"</strong> and you'll be required to ill in your name, email address,phone number, delivery
             address and any special notes.</p>
 
             <h4>Step 5 — Receive Your Confirmation</h4>
@@ -763,5 +759,4 @@
     }
   </script>
 </body>
-
 </html>
