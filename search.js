@@ -1,101 +1,153 @@
-// ══════════════════════════════════════
-//   LEISH ESSENTIALS — SEARCH JS
-// ══════════════════════════════════════
+// ══════════════════════════════════════════════
+//   LEISH ESSENTIALS — SEARCH LOGIC
+// ══════════════════════════════════════════════
 
 document.addEventListener('DOMContentLoaded', () => {
-  const searchInput   = document.getElementById('searchInput');
-  const searchResults = document.getElementById('searchResults');
 
-  if (!searchInput || !searchResults) return;
+  // ── Elements ──
+  const searchInput       = document.getElementById('searchInput');
+  const mobileSearchInput = document.getElementById('mobileSearchInput');
+  const searchResults     = document.getElementById('searchResults');
+  const mobileSearchBtn   = document.getElementById('mobileSearchBtn');
+  const mobileSearchBar   = document.getElementById('mobileSearchBar');
 
-  // ── Show results on input ──
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.trim().toLowerCase();
-
-    if (query.length < 2) {
-      searchResults.style.display = 'none';
-      searchResults.innerHTML = '';
-      return;
-    }
-
-    const matched = products.filter(p =>
-      p.name.toLowerCase().includes(query) ||
-      p.category.toLowerCase().includes(query) ||
-      p.description.toLowerCase().includes(query) ||
-      (p.scent && p.scent.toLowerCase().includes(query)) ||
-      (p.shade && p.shade.toLowerCase().includes(query))
-    );
-
-    if (matched.length === 0) {
-      searchResults.style.display = 'block';
-      searchResults.innerHTML = `
-        <div style="padding:20px; text-align:center;
-                    color:var(--text-light); font-size:0.9rem;">
-          No products found for "<strong>${query}</strong>" 🌿
-        </div>`;
-      return;
-    }
-
-    searchResults.innerHTML = '';
-    searchResults.style.display = 'block';
-
-    matched.forEach(product => {
-      const price = product.isSpecial ? product.specialPrice : product.price;
-      const item  = document.createElement('div');
-      item.className = 'search-result-item';
-      item.innerHTML = `
-        <img src="${product.image}" alt="${product.name}"/>
-        <div class="search-result-info">
-          <h4>${product.name}</h4>
-          <p>${product.comingSoon ? 'Coming Soon ✨' : `R${price}`}</p>
-        </div>
-        ${product.comingSoon
-          ? '<span style="font-size:0.75rem; color:var(--text-light); margin-left:auto;">Soon</span>'
-          : `<button class="btn btn-gold"
-               style="padding:6px 12px; font-size:0.75rem; margin-left:auto; white-space:nowrap;"
-               onclick="addToCart(${product.id}); closeSearch();">
-               Add 🛒
-             </button>`
-        }
-      `;
-
-      // Click on result item → go to shop filtered by category
-      item.addEventListener('click', (e) => {
-        if (e.target.tagName === 'BUTTON') return;
-        window.location.href = `shop.html?category=${product.category}`;
-      });
-
-      searchResults.appendChild(item);
+  // ── Open mobile search ──
+  if (mobileSearchBtn) {
+    mobileSearchBtn.addEventListener('click', () => {
+      mobileSearchBar.classList.toggle('active');
+      if (mobileSearchBar.classList.contains('active')) {
+        mobileSearchInput.focus();
+      } else {
+        mobileSearchInput.value = '';
+        if (searchResults) searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
+      }
     });
-  });
-
-  // ── Close search results ──
-  function closeSearch() {
-    searchResults.style.display = 'none';
-    searchResults.innerHTML = '';
-    searchInput.value = '';
   }
 
-  // Make closeSearch globally available (used in button onclick above)
-  window.closeSearch = closeSearch;
-
-  // ── Close when clicking outside ──
-  document.addEventListener('click', (e) => {
-    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-      searchResults.style.display = 'none';
-    }
-  });
-
-  // ── Close on Escape ──
-  searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeSearch();
-
-    // Enter key → go to shop with search query
-    if (e.key === 'Enter') {
-      const query = searchInput.value.trim();
-      if (query.length > 0) {
-        window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+  // ── Close mobile search ──
+  window.closeMobileSearch = function () {
+    if (mobileSearchBar) {
+      mobileSearchBar.classList.remove('active');
+      mobileSearchInput.value = '';
+      if (searchResults) {
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
       }
     }
-  });
+  };
+
+  // ── Search function ──
+  function performSearch(query) {
+    if (!searchResults) return;
+
+    const q = query.toLowerCase().trim();
+
+    if (!q) {
+      searchResults.innerHTML = '';
+      searchResults.style.display = 'none';
+      return;
+    }
+
+    // Filter products
+    const matches = products.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.category.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      (p.scent && p.scent.toLowerCase().includes(q)) ||
+      (p.shade && p.shade.toLowerCase().includes(q))
+    );
+
+    if (matches.length === 0) {
+      searchResults.innerHTML = `
+        <div class="search-no-results">
+          No products found for "<strong>${query}</strong>" 🌿
+        </div>`;
+      searchResults.style.display = 'block';
+      return;
+    }
+
+    // Build results HTML
+    searchResults.innerHTML = matches.map(p => {
+      const price = p.isSpecial
+        ? `<span style="color:var(--gold); font-weight:700;">
+             R${p.specialPrice}
+           </span>
+           <span style="text-decoration:line-through;
+                        color:var(--text-light);
+                        font-size:0.8rem; margin-left:4px;">
+             R${p.price}
+           </span>`
+        : `<span style="font-weight:700;">R${p.price}</span>`;
+
+      return `
+        <div class="search-result-item"
+             onclick="handleSearchClick(${p.id})">
+          <img src="${p.image}"
+               alt="${p.name}"
+               onerror="this.style.background='#EDE0D4'; this.src='';"
+               style="width:46px; height:46px; object-fit:cover;
+                      border-radius:8px; flex-shrink:0;"/>
+          <div style="flex:1; min-width:0;">
+            <p style="font-weight:700; color:var(--dark-brown);
+                      font-size:0.88rem; white-space:nowrap;
+                      overflow:hidden; text-overflow:ellipsis;">
+              ${p.name}
+            </p>
+            <p style="color:var(--text-light); font-size:0.78rem;">
+              ${p.category.replace(/-/g,' ')}
+            </p>
+          </div>
+          <div style="flex-shrink:0; font-size:0.88rem;">
+            ${price}
+          </div>
+        </div>`;
+    }).join('');
+
+    searchResults.style.display = 'block';
+  }
+
+  // ── Handle result click ──
+  window.handleSearchClick = function(productId) {
+    // Close search
+    if (searchInput) searchInput.value = '';
+    if (mobileSearchInput) mobileSearchInput.value = '';
+    if (searchResults) {
+      searchResults.innerHTML = '';
+      searchResults.style.display = 'none';
+    }
+    closeMobileSearch();
+
+    // If on shop page open modal directly
+    if (typeof openModal === 'function') {
+      openModal(productId);
+    } else {
+      // Otherwise go to shop page with product id
+      window.location.href = `shop.html?product=${productId}`;
+    }
+  };
+
+  // ── Desktop search input listener ──
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      performSearch(searchInput.value);
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!searchInput.contains(e.target) &&
+          !searchResults.contains(e.target)) {
+        searchResults.innerHTML = '';
+        searchResults.style.display = 'none';
+      }
+    });
+  }
+
+  // ── Mobile search input listener ──
+  if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', () => {
+      performSearch(mobileSearchInput.value);
+    });
+  }
+
 });
