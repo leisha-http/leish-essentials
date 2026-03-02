@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Us — Leish Essentials</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
@@ -26,7 +26,8 @@
             <circle cx="11" cy="11" r="8"/>
             <line x1="21" y1="21" x2="16.65" y2="16.65"/>
           </svg>
-          <input type="text" id="searchInput" placeholder="Search products..." autocomplete="off"/>
+          <input type="text" id="searchInput"
+                 placeholder="Search products..." autocomplete="off"/>
         </div>
         <a href="cart.html" class="cart-icon">
           🛒<span class="cart-count" id="cartCount">0</span>
@@ -51,193 +52,215 @@
   <div style="background: var(--warm-white); padding: 50px 20px;
               text-align:center; border-bottom: 1px solid var(--border);">
     <p class="hero-eyebrow">✦ Get In Touch ✦</p>
-    <h1 style="font-family: var(--font-heading); font-size: clamp(2rem,5vw,3rem);
-                color: var(--dark-brown);">Contact Us</h1>
+    <h1 style="font-family: var(--font-heading);
+               font-size: clamp(2rem,5vw,3rem);
+               color: var(--dark-brown);">Contact Us</h1>
     <div class="section-divider"></div>
-    <p style="color: var(--text-light); margin-top: 10px; max-width:500px; margin-left:auto; margin-right:auto;">
+    <p style="color: var(--text-light); margin-top: 10px;
+              max-width:500px; margin-left:auto; margin-right:auto;">
       Have a question, a special request or just want to say hi?
       We'd love to hear from you 💛
     </p>
   </div>
 
-  <!-- CONTACT FORM (Formspree) -->
+  <!-- CONTACT SECTION -->
   <section>
     <div class="contact-page">
 
-      <!-- Info Cards -->
-      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
-                  gap:16px; margin-bottom:50px;">
-        <div class="value-card">
-          <div class="value-icon">📍</div>
-          <h3>Location</h3>
-          <p>Pretoria, Gauteng<br/>South Africa</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">⏰</div>
-          <h3>Response Time</h3>
-          <p>We reply within<br/>24–48 hours</p>
-        </div>
-        <div class="value-card">
-          <div class="value-icon">📦</div>
-          <h3>Orders</h3>
-          <p>Place orders via<br/>our cart page</p>
-        </div>
-      </div>
-
-      <!-- Formspree Form -->
-      <!-- 🔧 REPLACE "YOUR_FORMSPREE_ID" with your actual Formspree form ID -->
-      <form
-  id="contactForm">" 
-  action="https://formspree.io/f/mreajwnz"
-  method="POST"
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-          <div class="form-group">
-            <label for="firstName">First Name *</label>
-            <input type="text" id="firstName" name="first_name"
-                   required placeholder="Leish"/>
-          </div>
-          <div class="form-group">
-            <label for="lastName">Last Name *</label>
-            <input type="text" id="lastName" name="last_name"
-                   required placeholder="Essentials"/>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address *</label>
-          <input type="email" id="email" name="email"
-                 required placeholder="you@example.com"/>
-        </div>
-
-        <div class="form-group">
-          <label for="subject">Subject *</label>
-          <input type="text" id="subject" name="subject"
-                 required placeholder="e.g. Question about an order"/>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message *</label>
-          <textarea id="message" name="message"
-                    required placeholder="Tell us what's on your mind..."></textarea>
-        </div>
-
-        <!-- Honeypot spam protection -->
-        <input type="text" name="_gotcha" style="display:none"/>
-
-        <!-- Redirect after submit -->
-        <input type="hidden" name="_next"
-               value="https://www.leishessentials.com/contact.html?sent=true"/>
-
-        <button type="button" onclick="submitContact()"
-  class="btn btn-primary"
-  id="contactSubmitBtn"
-  style="width:100%; padding:16px;
-         font-size:1rem; margin-top:8px;">
-  Send Message 💛
-</button>
-      </form> 
-
-      <!-- Success Message -->
-      <div id="successMsg" style="display:none; text-align:center;
-           background: var(--warm-white); border:1px solid var(--border);
-           border-radius:14px; padding:40px; margin-top:30px;">
-        <p style="font-size:2.5rem;">💛</p>
-        <h3 style="font-family:var(--font-heading); color:var(--dark-brown);
-                   font-size:1.5rem; margin:12px 0 8px;">Message Received!</h3>
-        <p style="color:var(--text-light);">
-          Thank you for reaching out. We'll get back to you within 24–48 hours.
-        </p>
-      </div>
-
+  <!-- Info Cards -->
+  <div style="display:grid;
+              grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+              gap:16px; margin-bottom:50px;">
+    <div class="value-card">
+      <div class="value-icon">📍</div>
+      <h3>Location</h3>
+      <p>Pretoria, Gauteng<br/>South Africa</p>
     </div>
-  </section>
+    <div class="value-card">
+      <div class="value-icon">⏰</div>
+      <h3>Response Time</h3>
+      <p>We reply within<br/>24–48 hours</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">📦</div>
+      <h3>Orders</h3>
+      <p>Place orders via<br/>our cart page</p>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <form id="contactForm">
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="form-group">
+        <label for="firstName">First Name *</label>
+        <input type="text" id="firstName" name="first_name"
+               required placeholder="Leish"/>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name *</label>
+        <input type="text" id="lastName" name="last_name"
+               required placeholder="Essentials"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address *</label>
+      <input type="email" id="email" name="email"
+             required placeholder="you@example.com"/>
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject *</label>
+      <input type="text" id="subject" name="subject"
+             required placeholder="e.g. Question about an order"/>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message *</label>
+      <textarea id="message" name="message" required
+                placeholder="Tell us what's on your mind..."
+                style="height:140px;"></textarea>
+    </div>
+
+    <!-- Honeypot spam protection -->
+    <input type="text" name="_gotcha" style="display:none"/>
+
+    <button type="button"
+            onclick="submitContact()"
+            class="btn btn-primary"
+            id="contactSubmitBtn"
+            style="width:100%; padding:16px;
+                   font-size:1rem; margin-top:8px;">
+      Send Message 💛
+    </button>
+
+  </form>
+
+  <!-- Success Message (hidden until form submitted) -->
+  <div id="successMsg"
+       style="display:none; text-align:center;
+              background: var(--warm-white);
+              border:1px solid var(--border);
+              border-radius:14px; padding:40px;
+              margin-top:30px;">
+    <p style="font-size:2.5rem;">💛</p>
+    <h3 style="font-family:var(--font-heading);
+               color:var(--dark-brown);
+               font-size:1.5rem; margin:12px 0 8px;">
+      Message Received!
+    </h3>
+    <p style="color:var(--text-light);">
+      Thank you for reaching out. We'll get back to you
+      within 24–48 hours. 🌿
+    </p>
+    <a href="index.html"
+       class="btn btn-outline"
+       style="margin-top:20px; display:inline-block;">
+      Back to Home
+    </a>
+  </div>
+
+</div>
+  
+
+</section
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Leish Essentials</h3>
-        <p>Elevate your essence made. For the skin, soul and senses.</p>
+        <p>Elevate your essence. Made for the skin, soul and senses.</p>
         <div class="social-links" style="margin-top:20px;">
-          <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt" aria-label="Instagram">📸</a>
-          <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa" aria-label="TikTok">🎵</a>
+          <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt"
+             aria-label="Instagram">📸</a>
+          <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa"
+             aria-label="TikTok">🎵</a>
           <a href="#" aria-label="Facebook">📘</a>
           <a href="#" aria-label="WhatsApp">💬</a>
         </div>
       </div>
       <div class="footer-col">
-  <h4>Help</h4>
-  <ul>
-    <li><a href="customer-service.html#shipping">Shipping & Delivery</a></li>
-    <li><a href="customer-service.html#returns">Returns Policy</a></li>
-    <li><a href="customer-service.html#privacy">Privacy Policy</a></li>
-    <li><a href="contact.html">Contact Us</a></li>
-  </ul>
-</div>
-<div class="footer-col">
-  <h4>Info</h4>
-  <ul>
-    <li><a href="about.html">About Us</a></li>
-    <li><a href="customer-service.html">Customer Service</a></li>
-    <li><a href="cart.html
-">🛒 My Cart</a></li>
-  </ul>
-</div>
+        <h4>Help</h4>
+        <ul>
+          <li><a href="customer-service.html#shipping">Shipping & Delivery</a></li>
+          <li><a href="customer-service.html#returns">Returns Policy</a></li>
+          <li><a href="customer-service.html#privacy">Privacy Policy</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="customer-service.html">Customer Service</a></li>
+          <li><a href="cart.html">🛒 My Cart</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 Leish Essentials. All rights reserved. Elevate your essence.</p>
+      <p>© 2026 Leish Essentials. All rights reserved.
+         Elevate your essence.</p>
     </div>
   </footer>
 
-  <script src="products.js"></script>
-  <script src="cart.js"></script>
-  <script src="search.js"></script>
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/products.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/search.js"></script>
   <script>
-    // Show success message if redirected back after Formspree submit
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('sent') === 'true') {
-      document.getElementById('contactForm').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }
+    // ── Contact Form Submit ──
+    function submitContact() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const subject   = document.getElementById('subject').value.trim();
+      const message   = document.getElementById('message').value.trim();
 
-function submitContact() {
-    const name    = document.getElementById('firstName').value.trim();
-    const email   = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    if (!name || !email || !subject || !message) {
-      alert('Please fill in all required fields! 🌿');
-      return;
-    }
-
-    const btn = document.getElementById('contactSubmitBtn');
-    btn.textContent = 'Sending... ⏳';
-    btn.disabled    = true;
-
-    const formData = new FormData(document.getElementById('contactForm'));
-
-    fetch('https://formspree.io/f/mreajwnz', {
-      method : 'POST',
-      body   : formData,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        document.getElementById('formWrapper').style.display = 'none';
-        document.getElementById('successBox').style.display  = 'block';
-      } else {
-        throw new Error('Failed to send');
-      }
-    })
-    .catch(error => {
-      console.error('Contact error:', error);
-      btn.textContent = 'Send Message 💛';
-      btn.disabled    = false;
-      alert('❌ Something went wrong. Please try again!');
-    });
+  if (!firstName || !email || !subject || !message) {
+    alert('Please fill in all required fields! 🌿');
+    return;
   }
-  </script>
-</body>
 
+  const btn = document.getElementById('contactSubmitBtn');
+  btn.textContent = 'Sending... ⏳';
+  btn.disabled    = true;
+
+  const formData = new FormData(document.getElementById('contactForm'));
+
+  fetch('https://formspree.io/f/mreajwnz', {
+    method : 'POST',
+    body   : formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      // ✅ Hide form and show success message
+      document.getElementById('contactForm').style.display = 'none';
+      document.getElementById('successMsg').style.display  = 'block';
+      // Scroll to success message
+      document.getElementById('successMsg').scrollIntoView({
+        behavior: 'smooth'
+      });
+    } else {
+      return response.json().then(data => {
+        throw new Error(data.error || 'Failed to send');
+      });
+    }
+  })
+  .catch(error => {
+    console.error('Contact error:', error);
+    btn.textContent = 'Send Message 💛';
+    btn.disabled    = false;
+    alert('❌ Something went wrong. Please try again!');
+  });
+}
+  
+
+</script
+
+</body>
 </html>
