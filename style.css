@@ -1647,3 +1647,14 @@ footer {
     display: none !important;
   }
 }
+@media (max-width: 600px) {
+  .hero { padding: 40px 16px; }
+  .hero-buttons { flex-direction: column; gap: 10px; }
+  .hero-buttons .btn { width: 100%; max-width: 100%; }
+  .product-grid { grid-template-columns: 1fr; gap: 14px; padding: 0 12px; }
+  .product-card-image { height: 160px; object-fit: cover; }
+  .product-card-footer { flex-direction: column; align-items: stretch; gap: 8px; }
+  .product-card-footer .btn { width: 100%; }
+  .product-price { margin-bottom: 6px; }
+  .nav-container { padding: 0 12px; }
+}
