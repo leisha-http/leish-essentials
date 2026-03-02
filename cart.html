@@ -19,26 +19,13 @@
         <li><a href="specials.html">Specials</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
-     <div class="nav-right">
-
-  <!-- Desktop search bar -->
-  <div class="search-bar">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" stroke-width="2">
-      <circle cx="11" cy="11" r="8"/>
-      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-    </svg>
-    <input type="text" id="searchInput"
-           placeholder="Search products..."
-           autocomplete="off"/>
-  </div>
-
-  <!-- Mobile search toggle button -->
-  <button class="mobile-search-btn"
-          id="mobileSearchBtn"
-          aria-label="Search">
-    🔍
-  </button>
+      <div class="nav-right">
+        <a href="cart.html" class="cart-icon">
+          🛒<span class="cart-count" id="cartCount">0</span>
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
     </div>
     <div class="mobile-nav" id="mobileNav">
@@ -167,6 +154,7 @@
  <script src="search.js"></script>
       <!-- ORDER FORM (hidden, submitted by JS) -->
 <!-- 🔧 Replace YOUR_FORMSPREE_ID with your actual ID e.g. xbjvkzpp -->
+
 <form
   id="hiddenOrderForm"
   action="https://formspree.io/f/mreajwnz"
@@ -186,8 +174,7 @@
   <input type="text"  name="Order Total"         id="f_total"/>
   <textarea           name="Special Notes"       id="f_notes"></textarea>
   <input type="hidden" name="_subject"           id="f_subject"/>
-  <input type="hidden" name="_next"
-         value="https://www.leishessentials.com/order-success.html"/>
+ 
 </form>
 
 <!-- ORDER DETAILS MODAL -->
@@ -518,69 +505,93 @@
 
   // ── Submit Order ──
   function submitOrder() {
-    // ── Validate fields ──
-    const name     = document.getElementById('o_name').value.trim();
-    const email    = document.getElementById('o_email').value.trim();
-    const phone    = document.getElementById('o_phone').value.trim();
-    const address  = document.getElementById('o_address').value.trim();
-    const city     = document.getElementById('o_city').value.trim();
-    const province = document.getElementById('o_province').value.trim();
-    const postal   = document.getElementById('o_postal').value.trim();
-    const notes    = document.getElementById('o_notes').value.trim();
+  // ── Validate fields ──
+  const name     = document.getElementById('o_name').value.trim();
+  const email    = document.getElementById('o_email').value.trim();
+  const phone    = document.getElementById('o_phone').value.trim();
+  const address  = document.getElementById('o_address').value.trim();
+  const city     = document.getElementById('o_city').value.trim();
+  const province = document.getElementById('o_province').value.trim();
+  const postal   = document.getElementById('o_postal').value.trim();
+  const notes    = document.getElementById('o_notes').value.trim();
 
-    if (!name || !email || !phone || !address || !city || !province || !postal) {
-      showToast('⚠️ Please fill in all required fields!', 'error');
-      return;
-    }
-
-    // ── Build order items string ──
-    let itemLines = '';
-    cart.forEach(item => {
-      const product = products.find(p => p.id === item.id);
-      if (!product) return;
-      const price     = product.isSpecial ? product.specialPrice : product.price;
-      const itemTotal = price * item.qty;
-      itemLines +=
-        `${product.name} x${item.qty} @ R${price} each = R${itemTotal}\n`;
-    });
-
-    const subtotal = getSubtotal();
-    const total    = subtotal + currentShippingCost;
-
-    // ── Fill hidden form fields ──
-    document.getElementById('f_name').value     = name;
-    document.getElementById('f_email').value    = email;
-    document.getElementById('f_phone').value    = phone;
-    document.getElementById('f_address').value  = address;
-    document.getElementById('f_city').value     = city;
-    document.getElementById('f_province').value = province;
-    document.getElementById('f_postal').value   = postal;
-    document.getElementById('f_notes').value    = notes || 'None';
-    document.getElementById('f_shipping').value = currentShippingLabel;
-    document.getElementById('f_shipping_cost').value = `R${currentShippingCost}`;
-    document.getElementById('f_subtotal').value = `R${subtotal}`;
-    document.getElementById('f_total').value    = `R${total}`;
-    document.getElementById('f_subject').value  =
-      `🛒 New Order from ${name} — R${total}`;
-
-    document.getElementById('f_items').value =
-      itemLines +
-      `\n─────────────────────\n` +
-      `Subtotal : R${subtotal}\n` +
-      `Shipping : ${currentShippingLabel} — R${currentShippingCost}\n` +
-      `─────────────────────\n` +
-      `TOTAL    : R${total}`;
-
-    // ── Show loading state ──
-    const btn = document.getElementById('submitOrderBtn');
-    btn.textContent = 'Placing Order... ⏳';
-    btn.disabled    = true;
-
-    // ── Submit hidden form ──
-    document.getElementById('hiddenOrderForm').submit();
+  if (!name || !email || !phone || !address || !city || !province || !postal) {
+    showToast('⚠️ Please fill in all required fields!');
+    return;
   }
 
-  window.submitOrder = submitOrder;
+  // ── Build order items string ──
+  let itemLines = '';
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    if (!product) return;
+    const price     = product.isSpecial ? product.specialPrice : product.price;
+    const itemTotal = price * item.qty;
+    itemLines +=
+      `${product.name} x${item.qty} @ R${price} each = R${itemTotal}\n`;
+  });
+
+  const subtotal = getSubtotal();
+  const total    = subtotal + currentShippingCost;
+
+  // ── Fill hidden form fields ──
+  document.getElementById('f_name').value          = name;
+  document.getElementById('f_email').value         = email;
+  document.getElementById('f_phone').value         = phone;
+  document.getElementById('f_address').value       = address;
+  document.getElementById('f_city').value          = city;
+  document.getElementById('f_province').value      = province;
+  document.getElementById('f_postal').value        = postal;
+  document.getElementById('f_notes').value         = notes || 'None';
+  document.getElementById('f_shipping').value      = currentShippingLabel;
+  document.getElementById('f_shipping_cost').value = `R${currentShippingCost}`;
+  document.getElementById('f_subtotal').value      = `R${subtotal}`;
+  document.getElementById('f_total').value         = `R${total}`;
+  document.getElementById('f_subject').value       =
+    `🛒 New Order from ${name} — R${total}`;
+  document.getElementById('f_items').value =
+    itemLines +
+    `\n─────────────────────\n` +
+    `Subtotal : R${subtotal}\n` +
+    `Shipping : ${currentShippingLabel} — R${currentShippingCost}\n` +
+    `─────────────────────\n` +
+    `TOTAL    : R${total}`;
+
+  // ── Show loading state ──
+  const btn = document.getElementById('submitOrderBtn');
+  btn.textContent = 'Placing Order... ⏳';
+  btn.disabled    = true;
+
+  // ── Submit via fetch (AJAX) instead of form submit ──
+  // This way we control the redirect ourselves for free!
+  const formData = new FormData(document.getElementById('hiddenOrderForm'));
+
+  fetch(document.getElementById('hiddenOrderForm').action, {
+    method : 'POST',
+    body   : formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      // ✅ Success — clear cart and redirect
+      localStorage.removeItem('leish_cart');
+      window.location.href = 'order-success.html';
+    } else {
+      // ❌ Something went wrong
+      return response.json().then(data => {
+        throw new Error(data.error || 'Something went wrong');
+      });
+    }
+  })
+  .catch(error => {
+    console.error('Order error:', error);
+    btn.textContent = 'Place Order 💛';
+    btn.disabled    = false;
+    showToast('❌ Something went wrong. Please try again!');
+  });
+}
+
+window.submitOrder = submitOrder;
 
   // ── Init ──
   renderCartPage();
@@ -588,6 +599,4 @@
 </script>
  </script>
 </body>
-
 </html>
-
