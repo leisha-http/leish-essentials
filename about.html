@@ -19,7 +19,8 @@
         <li><a href="specials.html">Specials</a></li>
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
-     <div class="nav-right">
+      
+<div class="nav-right">
 
   <!-- Desktop search bar -->
   <div class="search-bar">
@@ -39,7 +40,25 @@
           aria-label="Search">
     🔍
   </button>
-      </div>
+
+  <a href="cart.html" class="cart-icon">
+    🛒<span class="cart-count" id="cartCount">0</span>
+  </a>
+
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
+</div>
+
+<!-- Mobile search bar (shows below nav when toggled) -->
+<div class="mobile-search-bar" id="mobileSearchBar">
+  <input type="text"
+         id="mobileSearchInput"
+         placeholder="Search products..."
+         autocomplete="off"/>
+  <button onclick="closeMobileSearch()">✕</button>
+</div>
     </div>
     <div class="search-results" id="searchResults"></div>
     <div class="mobile-nav" id="mobileNav">
@@ -168,5 +187,4 @@
   <script src="cart.js"></script>
   <script src="search.js"></script>
 </body>
-
 </html>
