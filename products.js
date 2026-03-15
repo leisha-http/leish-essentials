@@ -37,7 +37,7 @@ const products = [
     name       : "Milkshake Candle",
     category   : "candles",
     description: "Calming lavender and chamomile blend. Light this and let your stress melt away.",
-    price      : 120,
+    price      : 150,
     size       : "200ml",
     scent      : "Lavender & Chamomile",
     image      : "IMG-20260220-WA0019.jpg",
