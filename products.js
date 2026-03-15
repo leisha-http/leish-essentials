@@ -19,13 +19,13 @@ const products = [
   // ── CANDLES ──
   {
     id         : 1,
-    name       : "Warm Vanilla Candle",
+    name       : "Crimson Crush Candle",
     category   : "candles",
     description: "A warm, cosy vanilla scented soy candle. Perfect for winding down after a long day.",
     price      : 120,
     size       : "200ml",
-    scent      : "Warm Vanilla",
-    image      : "IMG-20260219-WA0039.jpg",
+    scent      : "Rose & Vanilla",
+    image      : "IMG-20260314-WA0071.jpg",
     isNew      : true,
     isSpecial  : false,
     specialPrice: null,
@@ -34,7 +34,7 @@ const products = [
 
   {
     id         : 2,
-    name       : "Lavender Dreams Candle",
+    name       : "Milkshake Candle",
     category   : "candles",
     description: "Calming lavender and chamomile blend. Light this and let your stress melt away.",
     price      : 120,
@@ -49,13 +49,83 @@ const products = [
 
   {
     id         : 3,
-    name       : "Citrus Burst Candle",
+    name       : "Solar Flare Candle",
     category   : "candles",
     description: "Bright, uplifting citrus and lemongrass. Perfect for energising your morning.",
     price      : 120,
     size       : "200ml",
     scent      : "Citrus & Lemongrass",
-    image      : "IMG-20260220-WA0019.jpg",
+    image      : "IMG-20260314-WA0123.jpg",
+    isNew      : false,
+    isSpecial  : false,
+    specialPrice: null,
+    comingSoon : false
+  },
+   {
+    id         : 4,
+    name       : "Midnight Abyss Candle",
+    category   : "candles",
+    description: "Bright, uplifting citrus and lemongrass. Perfect for energising your morning.",
+    price      : 120,
+    size       : "200ml",
+    scent      : "Citrus & Lemongrass",
+    image      : "IMG-20260314-WA0077.jpg",
+    isNew      : false,
+    isSpecial  : false,
+    specialPrice: null,
+    comingSoon : false
+  },
+   {
+    id         : 5,
+    name       : "Arctic Breeze Candle",
+    category   : "candles",
+    description: "Bright, uplifting citrus and lemongrass. Perfect for energising your morning.",
+    price      : 120,
+    size       : "200ml",
+    scent      : "Citrus & Lemongrass",
+    image      : "IMG-20260314-WA0143.jpg",
+    isNew      : false,
+    isSpecial  : false,
+    specialPrice: null,
+    comingSoon : false
+  },
+   {
+    id         : 6,
+    name       : "Pure Pearl Candle",
+    category   : "candles",
+    description: "Bright, uplifting citrus and lemongrass. Perfect for energising your morning.",
+    price      : 120,
+    size       : "200ml",
+    scent      : "Citrus & Lemongrass",
+    image      : "IMG-20260314-WA0111.jpg",
+    isNew      : false,
+    isSpecial  : false,
+    specialPrice: null,
+    comingSoon : false
+  },
+   {
+    id         : 7,
+    name       : "Botanical Bloom Candle",
+    category   : "candles",
+    description: "Bright, uplifting citrus and lemongrass. Perfect for energising your morning.",
+    price      : 120,
+    size       : "200ml",
+    scent      : "Citrus & Lemongrass",
+    image      : "IMG-20260314-WA0083.jpg",
+    isNew      : false,
+    isSpecial  : false,
+    specialPrice: null,
+    comingSoon : false
+  },
+   {
+    id         : 8,
+    name       : "Blush Petal Candle",
+    category   : "candles",
+    description: "Bright, uplifting citrus and lemongrass. Perfect for energising your morning.",
+    price      : 120,
+    size       : "200ml",
+    scent      : "Citrus & Lemongrass",
+    image      : "IMG-20260314-WA0093.jpg",
     isNew      : false,
     isSpecial  : false,
     specialPrice: null,
@@ -64,11 +134,11 @@ const products = [
 
   // ── SOAPS ──
   {
-    id         : 4,
-    name       : "Honey & Oat Soap",
+    id         : 9,
+    name       : "The Amber Glow Soap",
     category   : "soaps",
     description: "A gentle, nourishing soap made with raw honey and oats. Great for sensitive skin.",
-    price      : 65,
+    price      : 70,
     size       : "100g",
     scent      : "Honey & Oat",
     image      : "IMG-20260220-WA0019.jpg",
@@ -79,11 +149,11 @@ const products = [
   },
 
   {
-    id         : 5,
-    name       : "Rose Clay Soap",
+    id         : 10,
+    name       : "Deep Detox Soap",
     category   : "soaps",
     description: "Luxurious pink rose clay soap with real rose petals. Cleanses and softens skin beautifully.",
-    price      : 70,
+    price      : 100,
     size       : "100g",
     scent      : "Rose & Geranium",
     image      : "IMG-20260220-WA0019.jpg",
@@ -94,11 +164,25 @@ const products = [
   },
 
   {
-    id         : 6,
-    name       : "Charcoal & Tea Tree Soap",
+    id         : 11,
+    name       : "Midnight Sparkle Soap",
     category   : "soaps",
     description: "Deep cleansing activated charcoal soap with purifying tea tree oil. Great for oily skin.",
-    price      : 70,
+    price      : 80,
+    size       : "100g",
+    scent      : "Tea Tree & Mint",
+    image      : "IMG-20260220-WA0019.jpg",
+    isNew      : false,
+    isSpecial  : false,
+    specialPrice: null,
+    comingSoon : false
+  },
+  {
+    id         : 12,
+    name       : "Sensitive Soul Soap",
+    category   : "soaps",
+    description: "Deep cleansing activated charcoal soap with purifying tea tree oil. Great for oily skin.",
+    price      : 120,
     size       : "100g",
     scent      : "Tea Tree & Mint",
     image      : "IMG-20260220-WA0019.jpg",
@@ -108,7 +192,8 @@ const products = [
     comingSoon : false
   },
 
-  // ── LIP GLOSS ──
+
+  // ── LIP GLOSS ── (Coming Soon) ──
   {
     id         : 7,
     name       : "Strawberry Kiss Lip Gloss",
@@ -121,7 +206,7 @@ const products = [
     isNew      : true,
     isSpecial  : false,
     specialPrice: null,
-    comingSoon : false
+    comingSoon : true
   },
 
   {
@@ -136,7 +221,7 @@ const products = [
     isNew      : false,
     isSpecial  : false,
     specialPrice: null,
-    comingSoon : false
+    comingSoon : true
   },
 
   {
@@ -151,17 +236,17 @@ const products = [
     isNew      : false,
     isSpecial  : true,
     specialPrice: 40,
-    comingSoon : false
+    comingSoon : true
   },
-
-  // ── BODY BUTTERS (Coming Soon) ──
+// ── BODY BUTTERS (Coming Soon) ──
+ 
   {
     id         : 10,
     name       : "Shea & Mango Body Butter",
     category   : "body-butters",
     description: "A rich, whipped body butter made with shea and mango butter. Coming soon!",
-    price      : 130,
-    size       : "150ml",
+    price      : 250,
+    size       : "",
     scent      : "Mango & Coconut",
     image      : "",
     isNew      : false,
