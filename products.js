@@ -23,7 +23,7 @@ const products = [
     category   : "candles",
     description: "A warm, cosy vanilla scented soy candle. Perfect for winding down after a long day.",
     price      : 160,
-    size       : "200ml",
+    size       : "100g",
     scent      : "Rose & Vanilla",
     image      : "IMG-20260314-WA0071.jpg",
     isNew      : true,
@@ -38,7 +38,7 @@ const products = [
     category   : "candles",
     description: "Calming lavender and chamomile blend. Light this and let your stress melt away.",
     price      : 160,
-    size       : "200ml",
+    size       : "100g","200g"
     scent      : "Lavender & Chamomile",
     image      : "IMG-20260220-WA0019.jpg",
     isNew      : false,
