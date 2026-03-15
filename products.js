@@ -131,8 +131,8 @@ const products = [
     specialPrice: null,
     comingSoon : false
   },
-
-  // ── SOAPS ──
+ 
+  // ── SOAPS ── (Coming Soon) ──
   {
     id         : 9,
     name       : "The Amber Glow Soap",
@@ -141,7 +141,7 @@ const products = [
     price      : 70,
     size       : "100g",
     scent      : "Honey & Oat",
-    image      : "IMG-20260220-WA0019.jpg",
+    image      : "",
     isNew      : true,
     isSpecial  : false,
     specialPrice: null,
@@ -155,8 +155,8 @@ const products = [
     description: "Luxurious pink rose clay soap with real rose petals. Cleanses and softens skin beautifully.",
     price      : 100,
     size       : "100g",
-    scent      : "Rose & Geranium",
-    image      : "IMG-20260220-WA0019.jpg",
+    scent      : "Tea Tree",
+    image      : "",
     isNew      : false,
     isSpecial  : true,
     specialPrice: 55,
@@ -171,7 +171,7 @@ const products = [
     price      : 80,
     size       : "100g",
     scent      : "Tea Tree & Mint",
-    image      : "IMG-20260220-WA0019.jpg",
+    image      : "",
     isNew      : false,
     isSpecial  : false,
     specialPrice: null,
@@ -185,7 +185,7 @@ const products = [
     price      : 120,
     size       : "100g",
     scent      : "Tea Tree & Mint",
-    image      : "IMG-20260220-WA0019.jpg",
+    image      : "",
     isNew      : false,
     isSpecial  : false,
     specialPrice: null,
@@ -199,7 +199,7 @@ const products = [
     name       : "Strawberry Kiss Lip Gloss",
     category   : "lip-gloss",
     description: "A juicy, non-sticky strawberry lip gloss. Keeps your lips soft, plump and glossy all day.",
-    price      : 55,
+    price      : ,
     size       : "10ml",
     shade      : "Strawberry Pink",
     image      : "",
@@ -226,7 +226,7 @@ const products = [
 
   {
     id         : 15,
-    name       : "Watermelon Shine Lip Gloss",
+    name       : "Shine Lip Gloss",
     category   : "lip-gloss",
     description: "Fun, fresh watermelon gloss with a gorgeous sheer pink finish. Summer in a tube!",
     price      : 55,
@@ -234,7 +234,7 @@ const products = [
     shade      : "Sheer Watermelon",
     image      : "",
     isNew      : false,
-    isSpecial  : true,
+    isSpecial  : false,
     specialPrice: 40,
     comingSoon : true
   },
