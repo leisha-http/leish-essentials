@@ -195,7 +195,7 @@ const products = [
 
   // ── LIP GLOSS ── (Coming Soon) ──
   {
-    id         : 7,
+    id         : 13,
     name       : "Strawberry Kiss Lip Gloss",
     category   : "lip-gloss",
     description: "A juicy, non-sticky strawberry lip gloss. Keeps your lips soft, plump and glossy all day.",
@@ -210,7 +210,7 @@ const products = [
   },
 
   {
-    id         : 8,
+    id         : 14,
     name       : "Nude Honey Lip Gloss",
     category   : "lip-gloss",
     description: "A beautiful everyday nude gloss infused with honey. Moisturising and effortlessly pretty.",
@@ -225,7 +225,7 @@ const products = [
   },
 
   {
-    id         : 9,
+    id         : 15,
     name       : "Watermelon Shine Lip Gloss",
     category   : "lip-gloss",
     description: "Fun, fresh watermelon gloss with a gorgeous sheer pink finish. Summer in a tube!",
@@ -241,7 +241,7 @@ const products = [
 // ── BODY BUTTERS (Coming Soon) ──
  
   {
-    id         : 10,
+    id         : 16,
     name       : "Shea & Mango Body Butter",
     category   : "body-butters",
     description: "A rich, whipped body butter made with shea and mango butter. Coming soon!",
@@ -256,7 +256,7 @@ const products = [
   },
 
   {
-    id         : 11,
+    id         : 17,
     name       : "Vanilla Rose Body Butter",
     category   : "body-butters",
     description: "Deeply nourishing vanilla rose body butter. Your skin will thank you. Coming soon!",
@@ -272,7 +272,7 @@ const products = [
 
   // ── OILS (Coming Soon) ──
   {
-    id         : 12,
+    id         : 18,
     name       : "Glow Body Oil",
     category   : "oils",
     description: "A lightweight, fast-absorbing body oil that leaves your skin glowing. Coming soon!",
