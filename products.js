@@ -6,8 +6,9 @@
 const shippingRates = {
   gauteng_standard : 100,
   gauteng_premium  : 150,
-  national_standard: 200,
-  national_premium : 250
+  national_standard: 145,
+  national_premium : 185,
+  freeShippingThreshold: 1000 // Free shipping for orders over R1000
 };
 
 // ══════════════════════════════════════════════
