@@ -32,7 +32,7 @@ const products = [
     specialPrice: null,
     comingSoon  : false,
     inStock     : true,
-    stock       : 5,
+    stock       : 10,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
@@ -45,7 +45,7 @@ const products = [
     name        : "Milkshake Candle",
     category    : "candles",
     description : "A nostalgic comfort paraffin wax candle. Designed to turn your space into a decadent sanctuary.",
-    price       : 150,
+    price       : 200,
     size        : "100g",
     scent       : "Ylang Ylang & Vanilla",
     image       : "IMG-20260220-WA0019.jpg",
@@ -76,7 +76,7 @@ const products = [
     specialPrice: null,
     comingSoon  : false,
     inStock     : true,
-    stock       : 3,
+    stock       : 10,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
@@ -164,7 +164,7 @@ const products = [
     specialPrice: null,
     comingSoon  : false,
     inStock     : true,
-    stock       : 4,
+    stock       : 7,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
