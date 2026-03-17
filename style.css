@@ -1658,3 +1658,220 @@ footer {
   .product-price { margin-bottom: 6px; }
   .nav-container { padding: 0 12px; }
 }
+/* ── STOCK BADGES ── */
+.stock-badge {
+  position      : absolute;
+  bottom        : 10px;
+  left          : 10px;
+  padding       : 4px 10px;
+  font-size     : 0.68rem;
+  font-weight   : 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius : 2px;
+  z-index       : 2;
+}
+
+.in-stock {
+  background: rgba(39,174,96,0.15);
+  color     : #27ae60;
+  border    : 1px solid #27ae60;
+}
+
+.low-stock {
+  background: rgba(243,156,18,0.15);
+  color     : #f39c12;
+  border    : 1px solid #f39c12;
+}
+
+.out-of-stock {
+  background: rgba(231,76,60,0.15);
+  color     : #e74c3c;
+  border    : 1px solid #e74c3c;
+}
+
+/* ── SIZE SELECTOR ── */
+.size-selector-wrap {
+  margin-bottom: 10px;
+}
+
+.size-label {
+  display       : block;
+  font-size     : 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color         : var(--dark-brown);
+  margin-bottom : 5px;
+  font-weight   : 600;
+}
+
+.size-selector {
+  width      : 100%;
+  padding    : 8px 10px;
+  border     : 1px solid var(--border);
+  background : var(--warm-white);
+  color      : var(--dark-brown);
+  font-size  : 0.83rem;
+  cursor     : pointer;
+  outline    : none;
+  transition : border-color 0.3s;
+  appearance : none;
+  font-family: var(--font-body);
+}
+
+.size-selector:focus {
+  border-color: var(--gold);
+}
+
+/* ── QUANTITY ── */
+.quantity-wrap {
+  margin-bottom: 12px;
+}
+
+.quantity-controls {
+  display    : flex;
+  align-items: center;
+  width      : fit-content;
+  border     : 1px solid var(--border);
+  border-radius: 2px;
+  overflow   : hidden;
+}
+
+.qty-btn {
+  width     : 34px;
+  height    : 34px;
+  background: var(--warm-white);
+  border    : none;
+  color     : var(--dark-brown);
+  font-size : 1rem;
+  cursor    : pointer;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: var(--border);
+}
+
+.qty-btn:disabled {
+  opacity: 0.3;
+  cursor : not-allowed;
+}
+
+.qty-value {
+  width       : 38px;
+  text-align  : center;
+  font-size   : 0.9rem;
+  color       : var(--dark-brown);
+  border-left : 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding     : 6px 0;
+  font-weight : 600;
+}
+
+/* ── OUT OF STOCK CARD ── */
+.out-of-stock-card {
+  opacity: 0.75;
+}
+
+.product-image-dim {
+  filter: grayscale(50%);
+}
+/* ══════════════════════════════════════
+   MOBILE SEARCH
+══════════════════════════════════════ */
+
+/* Hide mobile search button on desktop */
+.mobile-search-btn {
+  display   : none;
+  background: none;
+  border    : none;
+  cursor    : pointer;
+  color     : var(--dark-brown);
+  padding   : 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide mobile search bar by default */
+.mobile-search-bar {
+  display   : none;
+  width     : 100%;
+  background: var(--warm-white);
+  border-top: 1px solid var(--border);
+  padding   : 0;
+  max-height: 0;
+  overflow  : hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+/* When active — slide down */
+.mobile-search-bar.active {
+  max-height: 70px;
+  padding   : 10px 16px;
+}
+
+.mobile-search-inner {
+  display    : flex;
+  align-items: center;
+  gap        : 10px;
+  background : var(--cream);
+  border     : 1px solid var(--border);
+  border-radius: 8px;
+  padding    : 10px 14px;
+}
+
+.mobile-search-inner input {
+  flex      : 1;
+  border    : none;
+  background: transparent;
+  outline   : none;
+  font-size : 0.9rem;
+  color     : var(--dark-brown);
+  font-family: var(--font-body);
+}
+
+.mobile-search-inner input::placeholder {
+  color: var(--text-light);
+}
+
+.mobile-search-close {
+  background: none;
+  border    : none;
+  cursor    : pointer;
+  color     : var(--text-light);
+  font-size : 0.9rem;
+  padding   : 0;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.mobile-search-close:hover {
+  color: var(--dark-brown);
+}
+
+/* ── On mobile ── */
+@media (max-width: 768px) {
+
+  /* Hide desktop search bar on mobile */
+  .search-bar {
+    display: none !important;
+  }
+
+  /* Show mobile search button on mobile */
+  .mobile-search-btn {
+    display: flex;
+  }
+
+  /* Show mobile search bar on mobile when active */
+  .mobile-search-bar {
+    display: block;
+  }
+
+  /* Search results full width on mobile */
+  .search-results {
+    left  : 0;
+    right : 0;
+    width : 100%;
+    border-radius: 0 0 12px 12px;
+  }
+}

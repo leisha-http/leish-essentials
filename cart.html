@@ -20,21 +20,66 @@
         <li><a href="contact.html">Contact Us</a></li>
       </ul>
       <div class="nav-right">
-        <a href="cart.html" class="cart-icon">
-          🛒<span class="cart-count" id="cartCount">0</span>
-        </a>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+  <!-- Desktop search — hidden on mobile via CSS -->
+  <div class="search-bar">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="searchInput"
+           placeholder="Search products..."
+           autocomplete="off"/>
+  </div>
+
+  <!-- Mobile search icon button — only shows on mobile -->
+  <button class="mobile-search-btn" id="mobileSearchBtn"
+          aria-label="Search">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+  </button>
+
+  <a href="cart.html" class="cart-icon">
+    🛒<span class="cart-count" id="cartCount">0</span>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</div>
     </div>
+
+    <!-- Search Results -->
+    <div class="search-results" id="searchResults"></div>
     <div class="mobile-nav" id="mobileNav">
       <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">About Us</a>
       <a href="specials.html">Specials</a>
       <a href="contact.html">Contact Us</a>
+      <a href="cart.html">🛒 Cart</a>
     </div>
+    
+
+
+<!-- Mobile search bar — slides down when search icon tapped -->
+<div class="mobile-search-bar" id="mobileSearchBar">
+  <div class="mobile-search-inner">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" stroke-width="2"
+      style="flex-shrink:0; opacity:0.5;">
+      <circle cx="11" cy="11" r="8"/>
+      <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </svg>
+    <input type="text" id="mobileSearchInput"
+           placeholder="Search products..."
+           autocomplete="off"/>
+    <button onclick="closeMobileSearch()"
+            class="mobile-search-close">✕</button>
+  </div>
+</div>
   </nav>
 
   <!-- CART PAGE -->
@@ -115,7 +160,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <h3>Leish Essentials</h3>
-        <p>Elevate your essence made. For the skin, soul and senses.</p>
+        <p>Natural handcrafted goods made with love in Pretoria, Gauteng.</p>
         <div class="social-links" style="margin-top:20px;">
           <a href="https://www.instagram.com/leish_essentials?igsh=dmN6YTl0bXVvcGlt" aria-label="Instagram">📸</a>
           <a href="https://www.tiktok.com/@leish_essentials?_r=1&_t=ZS-94G1A8vCPpa" aria-label="TikTok">🎵</a>
@@ -292,351 +337,414 @@
   <script src="search.js"></script>
 
   <script>
-  // ════════════════════════════════════════
-  //   CART PAGE — Full Logic
-  // ════════════════════════════════════════
+// ════════════════════════════════════════
+//   CART PAGE — Full Logic
+// ════════════════════════════════════════
 
-  const cartItemsList       = document.getElementById('cartItemsList');
-  const cartEmpty           = document.getElementById('cartEmpty');
-  const cartSummaryEl       = document.getElementById('cartSummary');
-  const summarySubtotal     = document.getElementById('summarySubtotal');
-  const summaryShipping     = document.getElementById('summaryShipping');
-  const summaryTotal        = document.getElementById('summaryTotal');
-  const locationSelect      = document.getElementById('locationSelect');
-  const shippingTypeWrapper = document.getElementById('shippingTypeWrapper');
-  const shippingTypeEl      = document.getElementById('shippingType');
-  const shippingInfoEl      = document.getElementById('shippingInfo');
-  const placeOrderBtn       = document.getElementById('placeOrderBtn');
+const cartItemsList       = document.getElementById('cartItemsList');
+const cartEmpty           = document.getElementById('cartEmpty');
+const cartSummaryEl       = document.getElementById('cartSummary');
+const summarySubtotal     = document.getElementById('summarySubtotal');
+const summaryShipping     = document.getElementById('summaryShipping');
+const summaryTotal        = document.getElementById('summaryTotal');
+const locationSelect      = document.getElementById('locationSelect');
+const shippingTypeWrapper = document.getElementById('shippingTypeWrapper');
+const shippingTypeEl      = document.getElementById('shippingType');
+const shippingInfoEl      = document.getElementById('shippingInfo');
+const placeOrderBtn       = document.getElementById('placeOrderBtn');
 
-  let cart                 = JSON.parse(localStorage.getItem('leish_cart')) || [];
-  let currentShippingCost  = 0;  let currentShippingLabel = '';
+let cart                = JSON.parse(localStorage.getItem('leish_cart')) || [];
+let currentShippingCost = 0;
+let currentShippingLabel = '';
 
-  // ── Get Subtotal ──
-  function getSubtotal() {
-    return cart.reduce((total, item) => {
-      const product = products.find(p => p.id === item.id);
-      if (!product) return total;
-      const price = product.isSpecial ? product.specialPrice : product.price;
-      return total + (price * item.qty);
-    }, 0);
+// ── Get Subtotal ──
+// Now uses price stored IN the cart item (includes size price)
+function getSubtotal() {
+  return cart.reduce((total, item) => {
+    // Use stored price if available, otherwise look up from products
+    const price = item.price
+      ? item.price
+      : (() => {
+          const product = products.find(p => p.id === item.id);
+          if (!product) return 0;
+          return product.isSpecial && product.specialPrice
+            ? product.specialPrice
+            : product.sizes && product.sizes.length > 0
+              ? product.sizes[0].price
+              : product.price;
+        })();
+    return total + (price * item.qty);
+  }, 0);
+}
+
+// ── Render Cart ──
+function renderCartPage() {
+  cartItemsList.innerHTML = '';
+  cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
+
+  if (cart.length === 0) {
+    cartEmpty.style.display     = 'block';
+    cartSummaryEl.style.display = 'none';
+    shippingInfoEl.style.display = 'none';
+    return;
   }
 
-  // ── Render Cart ──
-  function renderCartPage() {
-    cartItemsList.innerHTML = '';
-    cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
+  cartEmpty.style.display     = 'none';
+  cartSummaryEl.style.display = 'block';
 
-    if (cart.length === 0) {
-      cartEmpty.style.display      = 'block';
-      cartSummaryEl.style.display  = 'none';
-      shippingInfoEl.style.display = 'none';
-      return;
-    }
+  cart.forEach((item, index) => {
+    const product = products.find(p => p.id === item.id);
+    if (!product) return;
 
-    cartEmpty.style.display     = 'none';
-    cartSummaryEl.style.display = 'block';
+    // Use stored price if available
+    const price = item.price
+      ? item.price
+      : product.isSpecial && product.specialPrice
+        ? product.specialPrice
+        : product.sizes && product.sizes.length > 0
+          ? product.sizes[0].price
+          : product.price;
 
-    cart.forEach(item => {
-      const product = products.find(p => p.id === item.id);
-      if (!product) return;
+    const itemTotal = price * item.qty;
 
-      const price     = product.isSpecial ? product.specialPrice : product.price;
-      const itemTotal = price * item.qty;
+    // Show size if it exists
+    const sizeDisplay = item.size
+      ? `<span style="
+            display:inline-block;
+            background:var(--cream);
+            border:1px solid var(--border);
+            border-radius:4px;
+            padding:2px 8px;
+            font-size:0.75rem;
+            color:var(--text-light);
+            margin-top:4px;">
+            📏 ${item.size}
+          </span>`
+      : '';
 
-      const cartItemEl = document.createElement('div');
-      cartItemEl.className = 'cart-item';
-      cartItemEl.innerHTML = `
-        <img src="${product.image}" alt="${product.name}"
-             style="width:80px; height:80px; object-fit:cover;
-                    border-radius:10px; flex-shrink:0;"/>
-        <div class="cart-item-info">
-          <h3>${product.name}</h3>
-          <p style="color:var(--text-light); font-size:0.85rem;">
-            ${product.category.replace(/-/g,' ')} · R${price} each
-          </p>
-          <div style="display:flex; align-items:center; gap:12px; margin-top:10px;">
-            <button onclick="changeQty(${product.id}, -1)"
-              style="width:28px; height:28px; border-radius:50%;
-                     border:1px solid var(--border); background:var(--cream);
-                     cursor:pointer; font-size:1rem; display:flex;
-                     align-items:center; justify-content:center;">−</button>
-            <span style="font-weight:700; min-width:20px;
-                         text-align:center;">${item.qty}</span>
-            <button onclick="changeQty(${product.id}, 1)"
-              style="width:28px; height:28px; border-radius:50%;
-                     border:1px solid var(--border); background:var(--cream);
-                     cursor:pointer; font-size:1rem; display:flex;
-                     align-items:center; justify-content:center;">+</button>
-          </div>
+    const cartItemEl = document.createElement('div');
+    cartItemEl.className = 'cart-item';
+    cartItemEl.innerHTML = `
+      <img src="${product.image}"
+           alt="${product.name}"
+           style="width:80px; height:80px; object-fit:cover;
+                  border-radius:10px; flex-shrink:0;"/>
+      <div class="cart-item-info">
+        <h3>${product.name}</h3>
+        ${sizeDisplay}
+        <p style="color:var(--text-light); font-size:0.85rem; margin-top:4px;">
+          ${product.category.replace(/-/g,' ')} · R${price} each
+        </p>
+        <div style="display:flex; align-items:center;
+                    gap:12px; margin-top:10px;">
+          <button onclick="changeCartQty(${index}, -1)"
+            style="width:28px; height:28px; border-radius:50%;
+                   border:1px solid var(--border);
+                   background:var(--cream);
+                   cursor:pointer; font-size:1rem;
+                   display:flex; align-items:center;
+                   justify-content:center;">−</button>
+          <span style="font-weight:700; min-width:20px;
+                       text-align:center;">${item.qty}</span>
+          <button onclick="changeCartQty(${index}, 1)"
+            style="width:28px; height:28px; border-radius:50%;
+                   border:1px solid var(--border);
+                   background:var(--cream);
+                   cursor:pointer; font-size:1rem;
+                   display:flex; align-items:center;
+                   justify-content:center;">+</button>
         </div>
-        <div style="display:flex; flex-direction:column;
-                    align-items:flex-end; gap:8px;">
-          <span class="cart-item-price">R${itemTotal}</span>
-          <button class="cart-item-remove"
-                  onclick="removeFromCart(${product.id})"
-                  title="Remove item">✕</button>
-        </div>
-      `;
-      cartItemsList.appendChild(cartItemEl);
-    });
-
-    updateSummary();
-  }
-
-  // ── Change Quantity ──
-  function changeQty(productId, delta) {
-    cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
-    const item = cart.find(i => i.id === productId);
-    if (!item) return;
-    item.qty += delta;
-    if (item.qty <= 0) cart = cart.filter(i => i.id !== productId);
-    localStorage.setItem('leish_cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCartPage();
-    // ── Recalculate shipping if location already selected ──
-    if (locationSelect.value) calculateShipping();
-  }
-
-  // ── Remove Item ──
-  function removeFromCart(productId) {
-    cart = cart.filter(i => i.id !== productId);
-    localStorage.setItem('leish_cart', JSON.stringify(cart));
-    updateCartCount();
-    renderCartPage();
-    // ── Recalculate shipping if location already selected ──
-    if (locationSelect.value) calculateShipping();
-    showToast('Item removed 🗑️');
-  }
-
-  // ── Update Summary ──
-  function updateSummary() {
-    const subtotal   = getSubtotal();
-    const total      = subtotal + currentShippingCost;
-    const amountLeft = shippingRates.freeShippingThreshold - subtotal;
-
-    summarySubtotal.textContent = `R${subtotal}`;
-    summaryTotal.textContent    = `R${total}`;
-
-    // ── Always show free shipping progress message ──
-    if (!locationSelect.value) {
-      shippingInfoEl.style.display = 'block';
-      if (amountLeft > 0) {
-        shippingInfoEl.textContent =
-          `🌿 Spend R${amountLeft} more to qualify for FREE shipping!`;
-      } else {
-        shippingInfoEl.textContent =
-          `🎉 Your order qualifies for FREE shipping! Select your location above.`;
-      }
-    }
-  }
-
-  // ── Shipping Selectors ──
-  locationSelect.addEventListener('change', () => {
-    if (locationSelect.value) {
-      shippingTypeWrapper.style.display = 'block';
-    } else {
-      shippingTypeWrapper.style.display = 'none';
-      currentShippingCost               = 0;
-      currentShippingLabel              = '';
-      summaryShipping.textContent       = 'Select location above';
-      placeOrderBtn.disabled            = true;
-      shippingInfoEl.style.display      = 'none';
-    }
-    calculateShipping();
+      </div>
+      <div style="display:flex; flex-direction:column;
+                  align-items:flex-end; gap:8px;">
+        <span class="cart-item-price">R${itemTotal}</span>
+        <button class="cart-item-remove"
+                onclick="removeFromCart(${index})"
+                title="Remove item">✕</button>
+      </div>
+    `;
+    cartItemsList.appendChild(cartItemEl);
   });
 
-  shippingTypeEl.addEventListener('change', calculateShipping);
+  updateSummary();
+}
 
-  // ── Calculate Shipping ──
-  function calculateShipping() {
-    const loc      = locationSelect.value;
-    const type     = shippingTypeEl.value;
-    const subtotal = getSubtotal();
-    if (!loc) return;
+// ── Change Quantity ──
+// Now uses index so same product in different sizes works correctly
+function changeCartQty(index, delta) {
+  cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
+  if (!cart[index]) return;
 
-    // ── Set base shipping cost and label ──
-    if (loc === 'gauteng' && type === 'standard') {
-      currentShippingCost  = shippingRates.gauteng_standard;
-      currentShippingLabel = 'Within Gauteng — Standard (2–4 business days)';
-      showShippingInfo('📦 Standard delivery within Gauteng — estimated 2–4 business days.');
-    } else if (loc === 'gauteng' && type === 'premium') {
-      currentShippingCost  = shippingRates.gauteng_premium;
-      currentShippingLabel = 'Within Gauteng — Premium/Express (1–2 business days)';
-      showShippingInfo('⚡ Premium delivery within Gauteng — estimated 1–2 business days.');
-    } else if (loc === 'national' && type === 'standard') {
-      currentShippingCost  = shippingRates.national_standard;
-      currentShippingLabel = 'Outside Gauteng — Standard (3–5 business days)';
-      showShippingInfo('📦 Standard delivery outside Gauteng — estimated 3–5 business days.');
-    } else if (loc === 'national' && type === 'premium') {
-      currentShippingCost  = shippingRates.national_premium;
-      currentShippingLabel = 'Outside Gauteng — Premium/Express (2–3 business days)';
-      showShippingInfo('⚡ Premium delivery outside Gauteng — estimated 2–3 business days.');
-    }
+  cart[index].qty += delta;
 
-    // ── Free shipping check ──
-    if (subtotal >= shippingRates.freeShippingThreshold) {
-      currentShippingCost  = 0;
-      currentShippingLabel = currentShippingLabel + ' — FREE 🎉';
-      showShippingInfo('🎉 Woohoo! You qualify for FREE shipping on this order!');
-    } else {
-      // ── Show how much more needed for free shipping ──
-      const amountLeft = shippingRates.freeShippingThreshold - subtotal;
-      shippingInfoEl.textContent += ` Spend R${amountLeft} more for FREE shipping! 🌿`;
-    }
-
-    summaryShipping.textContent = currentShippingCost === 0 ? 'FREE 🎉' : `R${currentShippingCost}`;
-    updateSummary();
-    placeOrderBtn.disabled = false;
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
   }
 
-  function showShippingInfo(message) {
+  localStorage.setItem('leish_cart', JSON.stringify(cart));
+  updateCartCount();
+  renderCartPage();
+  if (locationSelect.value) calculateShipping();
+}
+
+// ── Remove Item ──
+// Now uses index so same product in different sizes works correctly
+function removeFromCart(index) {
+  cart = JSON.parse(localStorage.getItem('leish_cart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('leish_cart', JSON.stringify(cart));
+  updateCartCount();
+  renderCartPage();
+  if (locationSelect.value) calculateShipping();
+  showToast('Item removed 🗑️');
+}
+
+// ── Update Summary ──
+function updateSummary() {
+  const subtotal   = getSubtotal();
+  const total      = subtotal + currentShippingCost;
+  const amountLeft = shippingRates.freeShippingThreshold - subtotal;
+
+  summarySubtotal.textContent = `R${subtotal}`;
+  summaryTotal.textContent    = `R${total}`;
+
+  if (!locationSelect.value) {
     shippingInfoEl.style.display = 'block';
-    shippingInfoEl.textContent   = message;
+    shippingInfoEl.textContent   = amountLeft > 0
+      ? `🌿 Spend R${amountLeft} more to qualify for FREE shipping!`
+      : `🎉 Your order qualifies for FREE shipping! Select your location above.`;
+  }
+}
+
+// ── Shipping Selectors ──
+locationSelect.addEventListener('change', () => {
+  if (locationSelect.value) {
+    shippingTypeWrapper.style.display = 'block';
+  } else {
+    shippingTypeWrapper.style.display = 'none';
+    currentShippingCost               = 0;
+    currentShippingLabel              = '';
+    summaryShipping.textContent       = 'Select location above';
+    placeOrderBtn.disabled            = true;
+    shippingInfoEl.style.display      = 'none';
+  }
+  calculateShipping();
+});
+
+shippingTypeEl.addEventListener('change', calculateShipping);
+
+// ── Calculate Shipping ──
+function calculateShipping() {
+  const loc      = locationSelect.value;
+  const type     = shippingTypeEl.value;
+  const subtotal = getSubtotal();
+  if (!loc) return;
+
+  if (loc === 'gauteng' && type === 'standard') {
+    currentShippingCost  = shippingRates.gauteng_standard;
+    currentShippingLabel = 'Within Gauteng — Standard (2–4 business days)';
+    showShippingInfo('📦 Standard delivery within Gauteng — estimated 2–4 business days.');
+  } else if (loc === 'gauteng' && type === 'premium') {
+    currentShippingCost  = shippingRates.gauteng_premium;
+    currentShippingLabel = 'Within Gauteng — Premium/Express (1–2 business days)';
+    showShippingInfo('⚡ Premium delivery within Gauteng — estimated 1–2 business days.');
+  } else if (loc === 'national' && type === 'standard') {
+    currentShippingCost  = shippingRates.national_standard;
+    currentShippingLabel = 'Outside Gauteng — Standard (3–5 business days)';
+    showShippingInfo('📦 Standard delivery outside Gauteng — estimated 3–5 business days.');
+  } else if (loc === 'national' && type === 'premium') {
+    currentShippingCost  = shippingRates.national_premium;
+    currentShippingLabel = 'Outside Gauteng — Premium/Express (2–3 business days)';
+    showShippingInfo('⚡ Premium delivery outside Gauteng — estimated 2–3 business days.');
   }
 
-  // ── Open Order Modal ──
-  placeOrderBtn.addEventListener('click', () => {
-    if (cart.length === 0) return;
+  // Free shipping check
+  if (subtotal >= shippingRates.freeShippingThreshold) {
+    currentShippingCost  = 0;
+    currentShippingLabel = currentShippingLabel + ' — FREE 🎉';
+    showShippingInfo('🎉 Woohoo! You qualify for FREE shipping on this order!');
+  } else {
+    const amountLeft = shippingRates.freeShippingThreshold - subtotal;
+    shippingInfoEl.textContent += ` Spend R${amountLeft} more for FREE shipping! 🌿`;
+  }
 
-    const modalSummary = document.getElementById('modalOrderSummary');
-    let summaryHTML    = '';
+  summaryShipping.textContent = currentShippingCost === 0
+    ? 'FREE 🎉'
+    : `R${currentShippingCost}`;
+  updateSummary();
+  placeOrderBtn.disabled = false;
+}
 
-    // ── Loop through cart items correctly ──
-    cart.forEach(item => {
-      const product = products.find(p => p.id === item.id);
-      if (!product) return;
-      const price     = product.isSpecial ? product.specialPrice : product.price;
-      const itemTotal = price * item.qty;
-      summaryHTML += `
-        <div style="display:flex; justify-content:space-between;
-                    padding:4px 0; border-bottom:1px solid var(--border);">
-          <span>${product.name} × ${item.qty}</span>
-          <span style="font-weight:700;">R${itemTotal}</span>
-        </div>`;
-    });
+function showShippingInfo(message) {
+  shippingInfoEl.style.display = 'block';
+  shippingInfoEl.textContent   = message;
+}
 
-    const subtotal = getSubtotal();
-    const total    = subtotal + currentShippingCost;
+// ── Open Order Modal ──
+placeOrderBtn.addEventListener('click', () => {
+  if (cart.length === 0) return;
 
-    // ── Shipping row ──
+  const modalSummary = document.getElementById('modalOrderSummary');
+  let summaryHTML    = '';
+
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    if (!product) return;
+
+    // Use stored price
+    const price     = item.price
+      ? item.price
+      : product.isSpecial && product.specialPrice
+        ? product.specialPrice
+        : product.price;
+    const itemTotal = price * item.qty;
+
+    // Show size in modal summary
+    const sizeText = item.size ? ` · ${item.size}` : '';
+
     summaryHTML += `
       <div style="display:flex; justify-content:space-between;
-                  padding:6px 0; margin-top:4px;">
-        <span>Shipping</span>
-        <span style="${currentShippingCost === 0 ? 'color:green; font-weight:700;' : ''}">
-          ${currentShippingCost === 0 ? 'FREE 🎉' : `R${currentShippingCost}`}
-        </span>
-      </div>
-      <div style="display:flex; justify-content:space-between;
-                  padding:6px 0; border-top:2px solid var(--border);
-                  margin-top:4px; font-weight:700;
-                  color:var(--dark-brown); font-size:1rem;">
-        <span>Total</span>
-        <span>R${total}</span>
+                  padding:4px 0; border-bottom:1px solid var(--border);">
+        <span>${product.name}${sizeText} × ${item.qty}</span>
+        <span style="font-weight:700;">R${itemTotal}</span>
       </div>`;
-
-    modalSummary.innerHTML = summaryHTML;
-
-    document.getElementById('orderModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
   });
 
-  // ── Close Order Modal ──
-  function closeOrderModal() {
-    document.getElementById('orderModal').classList.remove('active');
-    document.body.style.overflow = '';
+  const subtotal = getSubtotal();
+  const total    = subtotal + currentShippingCost;
+
+  summaryHTML += `
+    <div style="display:flex; justify-content:space-between;
+                padding:6px 0; margin-top:4px;">
+      <span>Shipping</span>
+      <span style="${currentShippingCost === 0
+        ? 'color:green; font-weight:700;' : ''}">
+        ${currentShippingCost === 0 ? 'FREE 🎉' : `R${currentShippingCost}`}
+      </span>
+    </div>
+    <div style="display:flex; justify-content:space-between;
+                padding:6px 0;
+                border-top:2px solid var(--border);
+                margin-top:4px; font-weight:700;
+                color:var(--dark-brown); font-size:1rem;">
+      <span>Total</span>
+      <span>R${total}</span>
+    </div>`;
+
+  modalSummary.innerHTML = summaryHTML;
+
+  document.getElementById('orderModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+});
+
+// ── Close Order Modal ──
+function closeOrderModal() {
+  document.getElementById('orderModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+window.closeOrderModal = closeOrderModal;
+
+// ── Submit Order ──
+function submitOrder() {
+  const name     = document.getElementById('o_name').value.trim();
+  const email    = document.getElementById('o_email').value.trim();
+  const phone    = document.getElementById('o_phone').value.trim();
+  const address  = document.getElementById('o_address').value.trim();
+  const city     = document.getElementById('o_city').value.trim();
+  const province = document.getElementById('o_province').value.trim();
+  const postal   = document.getElementById('o_postal').value.trim();
+  const notes    = document.getElementById('o_notes').value.trim();
+
+  if (!name || !email || !phone || !address || !city || !province || !postal) {
+    showToast('⚠️ Please fill in all required fields!');
+    return;
   }
-  window.closeOrderModal = closeOrderModal;
 
-  // ── Submit Order ──
-  function submitOrder() {
-    const name     = document.getElementById('o_name').value.trim();
-    const email    = document.getElementById('o_email').value.trim();
-    const phone    = document.getElementById('o_phone').value.trim();
-    const address  = document.getElementById('o_address').value.trim();
-    const city     = document.getElementById('o_city').value.trim();
-    const province = document.getElementById('o_province').value.trim();
-    const postal   = document.getElementById('o_postal').value.trim();
-    const notes    = document.getElementById('o_notes').value.trim();
+  // Build order items string
+  // Now includes size in the order email!
+  let itemLines = '';
+  cart.forEach(item => {
+    const product = products.find(p => p.id === item.id);
+    if (!product) return;
 
-    if (!name || !email || !phone || !address || !city || !province || !postal) {
-      showToast('⚠️ Please fill in all required fields!');
-      return;
+    const price     = item.price
+      ? item.price
+      : product.isSpecial && product.specialPrice
+        ? product.specialPrice
+        : product.price;
+    const itemTotal = price * item.qty;
+    const sizeText  = item.size ? ` (${item.size})` : '';
+
+    itemLines +=
+      `${product.name}${sizeText} x${item.qty} ` +
+      `@ R${price} each = R${itemTotal}\n`;
+  });
+
+  const subtotal     = getSubtotal();
+  const total        = subtotal + currentShippingCost;
+  const shippingText = currentShippingCost === 0
+    ? 'FREE 🎉'
+    : `R${currentShippingCost}`;
+
+  // Fill hidden form fields
+  document.getElementById('f_name').value          = name;
+  document.getElementById('f_email').value         = email;
+  document.getElementById('f_phone').value         = phone;
+  document.getElementById('f_address').value       = address;
+  document.getElementById('f_city').value          = city;
+  document.getElementById('f_province').value      = province;
+  document.getElementById('f_postal').value        = postal;
+  document.getElementById('f_notes').value         = notes || 'None';
+  document.getElementById('f_shipping').value      = currentShippingLabel;
+  document.getElementById('f_shipping_cost').value = shippingText;
+  document.getElementById('f_subtotal').value      = `R${subtotal}`;
+  document.getElementById('f_total').value         = `R${total}`;
+  document.getElementById('f_subject').value       =
+    `🛒 New Order from ${name} — R${total}`;
+  document.getElementById('f_items').value =
+    itemLines +
+    `\n─────────────────────\n` +
+    `Subtotal : R${subtotal}\n` +
+    `Shipping : ${currentShippingLabel} — ${shippingText}\n` +
+    `─────────────────────\n` +
+    `TOTAL    : R${total}`;
+
+  // Show loading state
+  const btn = document.getElementById('submitOrderBtn');
+  btn.textContent = 'Placing Order... ⏳';
+  btn.disabled    = true;
+
+  // Submit via fetch
+  const formData = new FormData(document.getElementById('hiddenOrderForm'));
+
+  fetch(document.getElementById('hiddenOrderForm').action, {
+    method : 'POST',
+    body   : formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      localStorage.removeItem('leish_cart');
+      window.location.href = 'order-success.html';
+    } else {
+      return response.json().then(data => {
+        throw new Error(data.error || 'Something went wrong');
+      });
     }
+  })
+  .catch(error => {
+    console.error('Order error:', error);
+    btn.textContent = 'Place Order 💛';
+    btn.disabled    = false;
+    showToast('❌ Something went wrong. Please try again!');
+  });
+}
+window.submitOrder = submitOrder;
 
-    // ── Build order items string ──
-    let itemLines = '';
-    cart.forEach(item => {
-      const product = products.find(p => p.id === item.id);
-      if (!product) return;
-      const price     = product.isSpecial ? product.specialPrice : product.price;
-      const itemTotal = price * item.qty;
-      itemLines += `${product.name} x${item.qty} @ R${price} each = R${itemTotal}\n`;
-    });
+// ── Init ──
+renderCartPage();
+updateCartCount();
 
-    const subtotal     = getSubtotal();
-    const total        = subtotal + currentShippingCost;
-    const shippingText = currentShippingCost === 0 ? 'FREE 🎉' : `R${currentShippingCost}`;
-
-    // ── Fill hidden form fields ──
-    document.getElementById('f_name').value          = name;
-    document.getElementById('f_email').value         = email;
-    document.getElementById('f_phone').value         = phone;
-    document.getElementById('f_address').value       = address;
-    document.getElementById('f_city').value          = city;
-    document.getElementById('f_province').value      = province;
-    document.getElementById('f_postal').value        = postal;
-    document.getElementById('f_notes').value         = notes || 'None';
-    document.getElementById('f_shipping').value      = currentShippingLabel;
-    document.getElementById('f_shipping_cost').value = shippingText;
-    document.getElementById('f_subtotal').value      = `R${subtotal}`;
-    document.getElementById('f_total').value         = `R${total}`;
-    document.getElementById('f_subject').value       =
-      `🛒 New Order from ${name} — R${total}`;
-    document.getElementById('f_items').value =
-      itemLines +
-      `\n─────────────────────\n` +
-      `Subtotal : R${subtotal}\n` +
-      `Shipping : ${currentShippingLabel} — ${shippingText}\n` +
-      `─────────────────────\n` +
-      `TOTAL    : R${total}`;
-
-    // ── Show loading state ──
-    const btn = document.getElementById('submitOrderBtn');
-    btn.textContent = 'Placing Order... ⏳';
-    btn.disabled    = true;
-
-    // ── Submit via fetch ──
-    const formData = new FormData(document.getElementById('hiddenOrderForm'));
-
-    fetch(document.getElementById('hiddenOrderForm').action, {
-      method : 'POST',
-      body   : formData,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-      if (response.ok) {
-        localStorage.removeItem('leish_cart');
-        window.location.href = 'order-success.html';
-      } else {
-        return response.json().then(data => {
-          throw new Error(data.error || 'Something went wrong');
-        });
-      }
-    })
-    .catch(error => {
-      console.error('Order error:', error);
-      btn.textContent = 'Place Order 💛';
-      btn.disabled    = false;
-      showToast('❌ Something went wrong. Please try again!');
-    });
-  }
-  window.submitOrder = submitOrder;
-
-  // ── Init ──
-  renderCartPage();
-  updateCartCount();
-
-  </script>
+</script>
 </body>
-</html>
+</html> 
