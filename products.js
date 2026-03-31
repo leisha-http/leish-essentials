@@ -32,7 +32,7 @@ const products = [
     specialPrice: null,
     comingSoon  : false,
     inStock     : true,
-    stock       : 10,
+    stock       : 5,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
@@ -45,7 +45,7 @@ const products = [
     name        : "Milkshake Candle",
     category    : "candles",
     description : "A nostalgic comfort paraffin wax candle. Designed to turn your space into a decadent sanctuary.",
-    price       : 200,
+    price       : 150,
     size        : "100g",
     scent       : "Ylang Ylang & Vanilla",
     image       : "IMG-20260220-WA0019.jpg",
@@ -57,8 +57,8 @@ const products = [
     stock       : 8,
     sizes       : [
       { label: "Small  — 100g", price: 150 },
-      { label: "Medium — 200g", price: 240 },
-      { label: "Large  — 300g", price: 310 }
+      { label: "Medium — 200g", price: 280 },
+      { label: "Large  — 300g", price: 340 }
     ]
   },
 
@@ -76,7 +76,7 @@ const products = [
     specialPrice: null,
     comingSoon  : false,
     inStock     : true,
-    stock       : 10,
+    stock       : 3,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
@@ -97,8 +97,8 @@ const products = [
     isSpecial   : false,
     specialPrice: null,
     comingSoon  : false,
-    inStock     : false,
-    stock       : 0,
+    inStock     : true,
+    stock       : 10,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
@@ -164,7 +164,7 @@ const products = [
     specialPrice: null,
     comingSoon  : false,
     inStock     : true,
-    stock       : 7,
+    stock       : 4,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
@@ -275,7 +275,7 @@ const products = [
     description : "Coming soon",
     price       : null,
     size        : "10ml",
-    shade       : "",
+    shade       : "Strawberry Pink",
     image       : "",
     isNew       : true,
     isSpecial   : false,
@@ -311,7 +311,7 @@ const products = [
     description : "Coming soon",
     price       : null,
     size        : "10ml",
-    shade       : "",
+    shade       : "Sheer Watermelon",
     image       : "",
     isNew       : false,
     isSpecial   : false,
@@ -330,7 +330,7 @@ const products = [
     description : "Coming soon",
     price       : null,
     size        : "",
-    scent       : "",
+    scent       : "Mango & Coconut",
     image       : "",
     isNew       : false,
     isSpecial   : false,
@@ -348,7 +348,7 @@ const products = [
     description : "Coming soon",
     price       : null,
     size        : "150ml",
-    scent       : "",
+    scent       : "Vanilla & Rose",
     image       : "",
     isNew       : false,
     isSpecial   : false,
@@ -367,7 +367,7 @@ const products = [
     description : "Coming soon",
     price       : null,
     size        : "100ml",
-    scent       : "",
+    scent       : "Sweet Almond & Jasmine",
     image       : "",
     isNew       : false,
     isSpecial   : false,
