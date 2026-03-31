@@ -32,7 +32,7 @@ const products = [
     specialPrice: null,
     comingSoon  : false,
     inStock     : true,
-    stock       : 5,
+    stock       : 8,
     sizes       : [
       { label: "Small  — 100g", price: 160 },
       { label: "Medium — 200g", price: 250 },
