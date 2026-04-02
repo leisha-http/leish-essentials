@@ -45,7 +45,7 @@ const products = [
     name        : "Milkshake Candle",
     category    : "candles",
     description : "A nostalgic comfort paraffin wax candle. Designed to turn your space into a decadent sanctuary.",
-    price       : 150,
+    price       : 200,
     size        : "100g",
     scent       : "Ylang Ylang & Vanilla",
     image       : "IMG-20260220-WA0019.jpg",
