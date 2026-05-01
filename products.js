@@ -193,10 +193,29 @@ const products = [
       { label: "Large  — 300g", price: 320 }
     ]
   },
+   {
+    id          : 9,
+    name        : "Petal Play Candle",
+    category    : "candles",
+    description : "A soft floral candle crafted to lift your mood and fill your space with a gentle, blooming aroma. Hand-poured in small batches with care, it’s the perfect “fresh flowers without the mess” vibe for calm mornings, cosy evenings, and everything in between",
+    price       : 145,
+    size        : "100g",
+    scent       : "Rose & vanilla",
+    image       : "IMG-20260411-WA0149.jpg",
+    isNew       : false,
+    isSpecial   : false,
+    specialPrice: null,
+    comingSoon  : false,
+    inStock     : true,
+    stock       : 7,
+    sizes       : [
+      { label: "Small  — 100g", price: 145 },
+    ]
+  },
 
   // ── SOAPS (Coming Soon) ──
   {
-    id          : 9,
+    id          : 10,
     name        : "Coming Soon",
     category    : "soaps",
     description : "Coming soon",
@@ -213,63 +232,10 @@ const products = [
     sizes       : []
   },
 
-  {
-    id          : 10,
-    name        : "Coming Soon",
-    category    : "soaps",
-    description : "Coming soon",
-    price       : null,
-    size        : "100g",
-    scent       : "Rose & Geranium",
-    image       : "",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
-
-  {
-    id          : 11,
-    name        : "Coming Soon",
-    category    : "soaps",
-    description : "Coming soon",
-    price       : null,
-    size        : "100g",
-    scent       : "Tea Tree & Mint",
-    image       : "",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
-
-  {
-    id          : 12,
-    name        : "Coming Soon",
-    category    : "soaps",
-    description : "Coming soon",
-    price       : null,
-    size        : "100g",
-    scent       : "Tea Tree & Mint",
-    image       : "",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
 
   // ── LIP GLOSS (Coming Soon) ──
   {
-    id          : 13,
+    id          : 11,
     name        : "Coming Soon",
     category    : "lip-gloss",
     description : "Coming soon",
@@ -286,45 +252,11 @@ const products = [
     sizes       : []
   },
 
-  {
-    id          : 14,
-    name        : "Coming Soon",
-    category    : "lip-gloss",
-    description : "Coming soon",
-    price       : null,
-    size        : "10ml",
-    shade       : "Nude Honey",
-    image       : "",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
 
-  {
-    id          : 15,
-    name        : "Coming Soon",
-    category    : "lip-gloss",
-    description : "Coming soon",
-    price       : null,
-    size        : "10ml",
-    shade       : "Sheer Watermelon",
-    image       : "",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
 
   // ── BODY BUTTERS (Coming Soon) ──
   {
-    id          : 16,
+    id          : 12,
     name        : "Coming Soon",
     category    : "body-butters",
     description : "Coming soon",
@@ -341,27 +273,11 @@ const products = [
     sizes       : []
   },
 
-  {
-    id          : 17,
-    name        : "Coming Soon",
-    category    : "body-butters",
-    description : "Coming soon",
-    price       : null,
-    size        : "150ml",
-    scent       : "Vanilla & Rose",
-    image       : "",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
+  
 
   // ── OILS (Coming Soon) ──
   {
-    id          : 18,
+    id          : 13,
     name        : "Coming Soon",
     category    : "oils",
     description : "Coming soon",
@@ -376,8 +292,45 @@ const products = [
     inStock     : false,
     stock       : 0,
     sizes       : []
-  }
+  },
+  
+  // ── GIFT SETS (Mother's Day — Coming Soon) ──
+  {
+    id          : 14,
+    name        : "The Glow Gift Set",
+    category    : "gift-sets",
+    description : "A beautifully curated Mother's Day gift set featuring our limited edition candle, perfectly gift wrapped with a personalised message card. The perfect way to spoil mum.",
+    price       : null,
+    size        : "",
+    scent       : "",
+    image       : "",
+    isNew       : true,
+    isSpecial   : false,
+    specialPrice: null,
+    comingSoon  : true,
+    inStock     : false,
+    stock       : 0,
+    sizes       : []
+  },
 
+  // ── RESIN STUDIO (Coming Soon) ──
+  {
+    id          : 15,
+    name        : "Resin Studio",
+    category    : "resin",
+    description : "Something beautiful is being crafted. Our Resin Studio collection is coming soon — unique handmade resin pieces, exclusively from LeishEssentials.",
+    price       : null,
+    size        : "",
+    scent       : "",
+    image       : "",
+    isNew       : false,
+    isSpecial   : false,
+    specialPrice: null,
+    comingSoon  : true,
+    inStock     : false,
+    stock       : 0,
+    sizes       : []
+  },
 ];
 
 // ══════════════════════════════════════════════
