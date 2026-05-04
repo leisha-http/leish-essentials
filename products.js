@@ -16,10 +16,27 @@ const shippingRates = {
 // ══════════════════════════════════════════════
 
 const products = [
-
-  // ── CANDLES ──
+// ── GIFT SETS ──
   {
     id          : 1,
+    name        : "Happy Mothers Day Gift Set",
+    category    : "gift-sets",
+    description : "A beautifully curated Mother's Day gift set featuring our limited edition candle, perfectly gift wrapped with a personalised message card. The perfect way to spoil mum.",
+    price       : 380,
+    size        : "400g",
+    scent       : "Vanilla & Rose",
+    image       : "InShot_20260502_175457791.jpg",
+    isNew       : true,
+    isSpecial   : false,
+    specialPrice: null,
+    comingSoon  : false,
+    inStock     : true,
+    stock       : 10,
+    sizes       : []
+  },
+  // ── CANDLES ──
+  {
+    id          : 2,
     name        : "Crimson Crush Candle",
     category    : "candles",
     description : "A rose sand wax candle. The ultimate centerpiece for an evening of passion.",
@@ -41,7 +58,7 @@ const products = [
   },
 
   {
-    id          : 2,
+    id          : 3,
     name        : "Milkshake Candle",
     category    : "candles",
     description : "A nostalgic comfort paraffin wax candle. Designed to turn your space into a decadent sanctuary.",
@@ -63,7 +80,7 @@ const products = [
   },
 
   {
-    id          : 3,
+    id          : 4,
     name        : "Solar Flare Candle",
     category    : "candles",
     description : "Bright and uplifting sand wax candle. Perfect for energising your morning.",
@@ -85,7 +102,7 @@ const products = [
   },
 
   {
-    id          : 4,
+    id          : 5,
     name        : "Midnight Abyss Candle",
     category    : "candles",
     description : "A deep, mysterious blend of sand wax with dark woody and musky notes.",
@@ -107,7 +124,7 @@ const products = [
   },
 
   {
-    id          : 5,
+    id          : 6,
     name        : "Arctic Breeze Candle",
     category    : "candles",
     description : "A eucalyptus scented sand wax candle, cool, crisp and refreshing. Brings a sense of airy lightness to any room.",
@@ -129,7 +146,7 @@ const products = [
   },
 
   {
-    id          : 6,
+    id          : 7,
     name        : "Pure Pearl Candle",
     category    : "candles",
     description : "A vanilla scented sand wax candle, a minimalist's dream that fits seamlessly into any decor style.",
@@ -151,7 +168,7 @@ const products = [
   },
 
   {
-    id          : 7,
+    id          : 8,
     name        : "Botanical Bloom Candle",
     category    : "candles",
     description : "Fresh and grounding sand wax candle inspired by a garden in full bloom.",
@@ -173,7 +190,7 @@ const products = [
   },
 
   {
-    id          : 8,
+    id          : 9,
     name        : "Blush Petal Candle",
     category    : "candles",
     description : "Soft and romantic sand wax candle with a blend of roses. Casts a warm flattering glow for your self-care nights.",
@@ -194,7 +211,7 @@ const products = [
     ]
   },
    {
-    id          : 9,
+    id          : 10,
     name        : "Petal Play Candle",
     category    : "candles",
     description : "A soft floral candle crafted to lift your mood and fill your space with a gentle, blooming aroma. Hand-poured in small batches with care, it’s the perfect “fresh flowers without the mess” vibe for calm mornings, cosy evenings, and everything in between",
@@ -215,7 +232,7 @@ const products = [
 
   // ── SOAPS (Coming Soon) ──
   {
-    id          : 10,
+    id          : 11,
     name        : "Coming Soon",
     category    : "soaps",
     description : "Coming soon",
@@ -235,7 +252,7 @@ const products = [
 
   // ── LIP GLOSS (Coming Soon) ──
   {
-    id          : 11,
+    id          : 12,
     name        : "Coming Soon",
     category    : "lip-gloss",
     description : "Coming soon",
@@ -256,7 +273,7 @@ const products = [
 
   // ── BODY BUTTERS (Coming Soon) ──
   {
-    id          : 12,
+    id          : 13,
     name        : "Coming Soon",
     category    : "body-butters",
     description : "Coming soon",
@@ -277,7 +294,7 @@ const products = [
 
   // ── OILS (Coming Soon) ──
   {
-    id          : 13,
+    id          : 14,
     name        : "Coming Soon",
     category    : "oils",
     description : "Coming soon",
@@ -294,28 +311,11 @@ const products = [
     sizes       : []
   },
   
-  // ── GIFT SETS (Mother's Day — Coming Soon) ──
-  {
-    id          : 14,
-    name        : "The Glow Gift Set",
-    category    : "gift-sets",
-    description : "A beautifully curated Mother's Day gift set featuring our limited edition candle, perfectly gift wrapped with a personalised message card. The perfect way to spoil mum.",
-    price       : null,
-    size        : "",
-    scent       : "",
-    image       : "",
-    isNew       : true,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
+  
 
   // ── RESIN STUDIO (Coming Soon) ──
   {
-    id          : 15,
+    id          : 16,
     name        : "Resin Studio",
     category    : "resin",
     description : "Something beautiful is being crafted. Our Resin Studio collection is coming soon — unique handmade resin pieces, exclusively from LeishEssentials.",
