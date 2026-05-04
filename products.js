@@ -315,9 +315,9 @@ const products = [
 
   // ── Artisan Studio (Coming Soon) ──
   {
-    id          : 16,
+    id          : 15,
     name        : "",
-    category    : "",
+    category    : "artisan-studio",
     description : "Something beautiful is being crafted. Our Artisan Studio collection is coming soon — unique handmade pieces, exclusively from LeishEssentials.",
     price       : null,
     size        : "",
