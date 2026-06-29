@@ -1875,3 +1875,42 @@ footer {
     border-radius: 0 0 12px 12px;
   }
 }
+
+/* ── Consultation Notice ── */
+.consultation-notice {
+  background   : #fff8f0;
+  border       : 1px solid #f0c080;
+  border-radius: 10px;
+  padding      : 12px 15px;
+  margin       : 12px 0;
+  text-align   : center;
+}
+
+.consult-title {
+  font-weight: bold;
+  font-size  : 14px;
+  color      : #b35c00;
+  margin     : 0 0 5px 0;
+}
+
+.consult-text {
+  font-size: 12px;
+  color    : #555;
+  margin   : 0 0 10px 0;
+}
+
+.consult-btn {
+  display         : inline-block;
+  background      : #b35c00;
+  color           : #fff;
+  padding         : 7px 18px;
+  border-radius   : 20px;
+  text-decoration : none;
+  font-size       : 13px;
+  font-weight     : bold;
+  transition      : background 0.2s;
+}
+
+.consult-btn:hover {
+  background: #d4740a;
+}

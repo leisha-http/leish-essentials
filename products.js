@@ -16,7 +16,8 @@ const shippingRates = {
 // ══════════════════════════════════════════════
 
 const products = [
-// ── GIFT SETS ──
+
+  // ── GIFT SETS ──
   {
     id          : 1,
     name        : "Happy Mothers Day Gift Set",
@@ -34,6 +35,7 @@ const products = [
     stock       : 10,
     sizes       : []
   },
+
   // ── CANDLES ──
   {
     id          : 2,
@@ -210,14 +212,15 @@ const products = [
       { label: "Large  — 300g", price: 320 }
     ]
   },
-   {
+
+  {
     id          : 10,
     name        : "Petal Play Candle",
     category    : "candles",
-    description : "A soft floral candle crafted to lift your mood and fill your space with a gentle, blooming aroma. Hand-poured in small batches with care, it’s the perfect “fresh flowers without the mess” vibe for calm mornings, cosy evenings, and everything in between",
+    description : "A soft floral candle crafted to lift your mood and fill your space with a gentle, blooming aroma. Hand-poured in small batches with care, it's the perfect fresh flowers without the mess vibe for calm mornings, cosy evenings, and everything in between.",
     price       : 145,
     size        : "100g",
-    scent       : "Rose & vanilla",
+    scent       : "Rose & Vanilla",
     image       : "IMG-20260411-WA0149.jpg",
     isNew       : false,
     isSpecial   : false,
@@ -226,13 +229,85 @@ const products = [
     inStock     : true,
     stock       : 7,
     sizes       : [
-      { label: "Small  — 100g", price: 145 },
+      { label: "Small  — 100g", price: 145 }
     ]
   },
 
-  // ── SOAPS (Coming Soon) ──
+  // ── RESIN STUDIO ──
   {
     id          : 11,
+    name        : "Resin Bookmark",
+    category    : "resin",
+    description : "A handmade resin bookmark, crafted with love at LeishEssentials.",
+    price       : 55,
+    size        : "9.7cm",
+    scent       : "",
+    image       : "InShot_20260629_160137007.jpg",
+    isNew       : false,
+    isSpecial   : false,
+    specialPrice: null,
+    comingSoon  : false,
+    inStock     : true,
+    stock       : 8,
+    consultCustom: true,  // ← triggers consultation notice
+    sizes       : [
+      { label: "Small  — 9.7cm",  price: 55  },
+      { label: "Medium — 14.5cm", price: 65  },
+      { label: "Large  — 19.5cm", price: 75  }
+    ]
+  },
+  
+  {
+    id: 12,
+    name: "Resin Alphabet Keychain",
+    category: "resin",
+    description: "A handmade resin keychain, crafted with love at LeishEssentials.",
+    price: 55,
+    size: "Alphabet",
+    image: "InShot_20260629_165132528.jpg",
+    images: [
+      "IMG_20260629_151301.jpg",
+      "InShot_20260629_165132528.jpg",
+      "IMG_20260629_151311.jpg"
+    ],
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+  
+      price: 55
+    
+  },
+  {
+    id: 13,
+    name: "Resin Cresent Keychain",
+    category: "resin",
+    description: "A handmade resin keychain, crafted with love at LeishEssentials.",
+    price: 45,
+    size: "",
+    image: "IMG_20260629_150747.jpg",
+    images: [
+      "IMG_20260629_150839.jpg",
+      "IMG_20260629_150829.jpg",
+      "IMG_20260629_150724.jpg"
+    ],
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+  
+      price: 45
+    
+  },
+  // ── SOAPS (Coming Soon) ──
+  {
+    id          : 14,
     name        : "Coming Soon",
     category    : "soaps",
     description : "Coming soon",
@@ -249,10 +324,9 @@ const products = [
     sizes       : []
   },
 
-
   // ── LIP GLOSS (Coming Soon) ──
   {
-    id          : 12,
+    id          : 15,
     name        : "Coming Soon",
     category    : "lip-gloss",
     description : "Coming soon",
@@ -269,11 +343,9 @@ const products = [
     sizes       : []
   },
 
-
-
   // ── BODY BUTTERS (Coming Soon) ──
   {
-    id          : 13,
+    id          : 16,
     name        : "Coming Soon",
     category    : "body-butters",
     description : "Coming soon",
@@ -290,38 +362,15 @@ const products = [
     sizes       : []
   },
 
-  
-
   // ── OILS (Coming Soon) ──
   {
-    id          : 14,
+    id          : 17,
     name        : "Coming Soon",
     category    : "oils",
     description : "Coming soon",
     price       : null,
     size        : "100ml",
     scent       : "Sweet Almond & Jasmine",
-    image       : "",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : true,
-    inStock     : false,
-    stock       : 0,
-    sizes       : []
-  },
-  
-  
-
-  // ── ARTISAN STUDIO (Coming Soon) ──
-  {
-    id          : 15,
-    name        : "Coming soon",
-    category    : "artisan studio",
-    description : "Something beautiful is being crafted. Our Artisan Studio collection is coming soon — unique handmade pieces, exclusively from LeishEssentials.",
-    price       : null,
-    size        : "",
-    scent       : "",
     image       : "",
     isNew       : false,
     isSpecial   : false,
@@ -340,22 +389,13 @@ const products = [
 // ── Get stock badge HTML ──
 function getStockBadge(product) {
   if (product.comingSoon) return '';
-
   if (!product.inStock || product.stock === 0) {
-    return `<span class="stock-badge out-of-stock">
-              ✕ Out of Stock
-            </span>`;
+    return `<span class="stock-badge out-of-stock">✕ Out of Stock</span>`;
   }
-
   if (product.stock <= 5) {
-    return `<span class="stock-badge low-stock">
-              ⚡ Only ${product.stock} left!
-            </span>`;
+    return `<span class="stock-badge low-stock">⚡ Only ${product.stock} left!</span>`;
   }
-
-  return `<span class="stock-badge in-stock">
-            ✓ In Stock
-          </span>`;
+  return `<span class="stock-badge in-stock">✓ In Stock</span>`;
 }
 
 // ── Get size selector HTML ──
@@ -380,6 +420,25 @@ function getSizeSelector(product) {
   `;
 }
 
+// ── Get consultation notice HTML ──
+function getConsultNotice(product) {
+  if (!product.consultCustom) return '';
+  if (product.comingSoon)     return '';
+
+  return `
+    <div class="consultation-notice">
+      <p class="consult-title">🎨 Custom Options Available</p>
+      <p class="consult-text">
+        Want a specific colour, design, or personalisation?
+        We'd love to create something just for you!
+      </p>
+      <a href="contact.html" class="consult-btn">
+        💬 Consult Us
+      </a>
+    </div>
+  `;
+}
+
 // ── Update price when size changes ──
 function updatePrice(selectEl, productId) {
   const selectedOption = selectEl.options[selectEl.selectedIndex];
@@ -391,9 +450,9 @@ function updatePrice(selectEl, productId) {
     priceEl.textContent = `R${newPrice}`;
   }
 
-  // Update add to cart button data  const cartBtn = card.querySelector('.add-to-cart-btn');
+  const cartBtn = card.querySelector('.add-to-cart-btn');
   if (cartBtn) {
-    cartBtn.setAttribute('data-price', newPrice);
+    cartBtn.setAttribute ('data-price', newPrice);
     cartBtn.setAttribute('data-size',
       selectedOption.textContent.split('—')[0].trim()
     );
@@ -402,9 +461,7 @@ function updatePrice(selectEl, productId) {
 
 // ── Get quantity selector HTML ──
 function getQuantitySelector(product) {
-  if (product.comingSoon || !product.inStock || product.stock === 0) {
-    return '';
-  }
+  if (product.comingSoon || !product.inStock || product.stock === 0) return '';
 
   return `
     <div class="quantity-wrap">
@@ -422,25 +479,20 @@ function getQuantitySelector(product) {
 
 // ── Change quantity ──
 function changeQty(btn, direction, maxStock) {
-  const wrap    = btn.closest('.quantity-controls');
-  const qtyEl   = wrap.querySelector('.qty-value');
-  let current   = parseInt(qtyEl.textContent);
-  let newQty    = current + direction;
+  const wrap   = btn.closest('.quantity-controls');
+  const qtyEl  = wrap.querySelector('.qty-value');
+  let current  = parseInt(qtyEl.textContent);
+  let newQty   = current + direction;
 
-  // Clamp between 1 and max stock
   if (newQty < 1)        newQty = 1;
   if (newQty > maxStock) newQty = maxStock;
 
   qtyEl.textContent = newQty;
 
-  // Update add to cart button
   const card    = btn.closest('.product-card');
   const cartBtn = card.querySelector('.add-to-cart-btn');
-  if (cartBtn) {
-    cartBtn.setAttribute('data-qty', newQty);
-  }
+  if (cartBtn) cartBtn.setAttribute('data-qty', newQty);
 
-  // Disable minus button at 1
   const minusBtn = wrap.querySelector('.qty-btn:first-child');
   const plusBtn  = wrap.querySelector('.qty-btn:last-child');
   minusBtn.disabled = newQty <= 1;
@@ -451,7 +503,6 @@ function changeQty(btn, direction, maxStock) {
 function buildProductCard(product) {
   const isOutOfStock = !product.inStock || product.stock === 0;
 
-  // Badges
   const newBadge     = product.isNew
     ? `<span class="badge badge-new">New</span>` : '';
   const specialBadge = product.isSpecial
@@ -469,20 +520,17 @@ function buildProductCard(product) {
       <span class="product-price-original">R${product.price}</span>
     `;
   } else {
-    // Show first size price if sizes exist
     const displayPrice = product.sizes && product.sizes.length > 0
       ? product.sizes[0].price
       : product.price;
     priceHTML = `<span class="product-price">R${displayPrice}</span>`;
   }
 
-  // Add to cart button
+  // Cart button
   const firstPrice = product.sizes && product.sizes.length > 0
-    ? product.sizes[0].price
-    : product.price;
+    ? product.sizes[0].price : product.price;
   const firstSize  = product.sizes && product.sizes.length > 0
-    ? product.sizes[0].label
-    : product.size;
+    ? product.sizes[0].label : product.size;
 
   let cartBtnHTML = '';
   if (product.comingSoon) {
@@ -509,7 +557,7 @@ function buildProductCard(product) {
       </button>`;
   }
 
-  // Scent or shade info
+  // Scent or shade
   const infoLabel = product.shade
     ? `<p class="product-scent">🌈 Shade: ${product.shade}</p>`
     : product.scent
@@ -527,14 +575,12 @@ function buildProductCard(product) {
         ${product.image
           ? `<img src="${product.image}"
                   alt="${product.name}"
-                  class="product-image
-                  ${isOutOfStock ? 'product-image-dim' : ''}"/>`
+                  class="product-image ${isOutOfStock
+                    ? 'product-image-dim' : ''}"/>`
           : `<div class="product-image-placeholder">🕯️</div>`
         }
         <div class="product-badges">
-          ${newBadge}
-          ${specialBadge}
-          ${soonBadge}
+          ${newBadge}${specialBadge}${soonBadge}
         </div>
         ${getStockBadge(product)}
       </div>
@@ -545,27 +591,19 @@ function buildProductCard(product) {
         ${infoLabel}
         <p class="product-description">${product.description}</p>
 
-        <!-- Price -->
-        <div class="product-price-wrap">
-          ${priceHTML}
-        </div>
+        <div class="product-price-wrap">${priceHTML}</div>
 
-        <!-- Size selector -->
         ${getSizeSelector(product)}
-
-        <!-- Quantity selector -->
+        ${getConsultNotice(product)}
         ${getQuantitySelector(product)}
 
-        <!-- Add to cart -->
-        <div class="product-cart-wrap">
-          ${cartBtnHTML}
-        </div>
+        <div class="product-cart-wrap">${cartBtnHTML}</div>
       </div>
     </div>
   `;
 }
 
-// ── Render all products into a container ──
+// ── Render all products ──
 function renderProducts(category = 'all') {
   const container = document.getElementById('products-container');
   if (!container) return;
@@ -587,13 +625,10 @@ function renderProducts(category = 'all') {
 
 // ── Filter buttons ──
 function filterProducts(category, btn) {
-  // Update active button
   document.querySelectorAll('.filter-btn').forEach(b => {
     b.classList.remove('active');
   });
   btn.classList.add('active');
-
-  // Re-render
   renderProducts(category);
 }
 

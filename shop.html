@@ -237,7 +237,7 @@
   const shopGrid  = document.getElementById('shopProductGrid');
   const filterBtns = document.querySelectorAll('.filter-btn');
 
-  const urlParams  = new URLSearchParams(window.location.search);
+  const urlParams   = new URLSearchParams(window.location.search);
   const urlCategory = urlParams.get('category') || 'all';
 
   // ── Stock badge ──
@@ -274,17 +274,58 @@
     `;
   }
 
+  
+// ── Consult notice — opens WhatsApp with pre-filled message ──
+function getConsultNotice(product) {
+  if (!product.consultCustom) return '';
+  if (product.comingSoon)     return '';
+
+  return `
+    <div class="consultation-notice">
+      <p class="consult-title">🎨 Custom Options Available</p>
+      <p class="consult-text">
+        Want a specific colour, design, or personalisation?
+        We'd love to create something just for you!
+      </p>
+      <button class="consult-btn"
+              onclick="openWhatsAppConsult(this, '${product.name}')">
+        💬 Consult Us on WhatsApp
+      </button>
+    </div>
+  `;
+}
+
+// ── Open WhatsApp with product + selected size pre-filled ──
+function openWhatsAppConsult(btn, productName) {
+  const card = btn.closest('.product-card');
+
+  // Get selected size if there is one
+  const sizeSelector = card.querySelector('.size-selector');
+  const selectedSize = sizeSelector
+    ? sizeSelector.options[sizeSelector.selectedIndex]
+        .textContent.split('—')[0].trim()
+    : '';
+
+  // Build message
+  const message = selectedSize
+    ? `Hi Leish Essentials!  I'm interested in the *${productName}* (${selectedSize}) and would like to discuss custom colour and design options. `
+    : `Hi Leish Essentials!  I'm interested in the *${productName}* and would like to discuss custom colour and design options. `;
+
+  
+// Your WhatsApp direct link with pre-filled message
+  const url = `https://wa.me/message/UR2EZZODGWVXG1?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+}
+
   // ── Update price when size changes ──
   function updateCardPrice(selectEl) {
     const selectedOption = selectEl.options[selectEl.selectedIndex];
     const newPrice       = selectedOption.getAttribute('data-price');
     const card           = selectEl.closest('.product-card');
 
-    // Update displayed price
     const priceEl = card.querySelector('.product-price');
     if (priceEl) priceEl.textContent = `R${newPrice}`;
 
-    // Update add to cart button data
     const cartBtn = card.querySelector('.btn-gold-cart');
     if (cartBtn) {
       cartBtn.setAttribute('data-price', newPrice);
@@ -339,7 +380,6 @@
   function buildCard(product) {
     const isOutOfStock = !product.inStock || product.stock === 0;
 
-    // Badge
     const badge = product.comingSoon
       ? '<span class="product-card-badge badge-coming-soon">Coming Soon</span>'
       : product.isNew
@@ -348,7 +388,6 @@
           ? '<span class="product-card-badge badge-special">Special</span>'
           : '';
 
-    // Price
     const displayPrice = product.sizes && product.sizes.length > 0
       ? product.sizes[0].price
       : product.isSpecial && product.specialPrice
@@ -363,12 +402,10 @@
            </span>`
         : `<span class="product-price">R${displayPrice}</span>`;
 
-    // First size info for cart
     const firstSize = product.sizes && product.sizes.length > 0
       ? product.sizes[0].label
       : product.size || '';
 
-    // Action button
     const actionBtn = product.comingSoon
       ? `<button class="btn btn-outline"
            style="padding:8px 16px;font-size:0.8rem;opacity:0.5;"
@@ -415,13 +452,10 @@
           <h3 class="product-card-name">${product.name}</h3>
           <p class="product-card-desc">${product.description}</p>
 
-          <!-- Size selector -->
           ${getSizeSelector(product)}
-
-          <!-- Quantity selector -->
+          ${getConsultNotice(product)}
           ${getQuantitySelector(product)}
 
-          <!-- Footer -->
           <div class="product-card-footer">
             ${priceHTML}
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -438,7 +472,7 @@
     `;
   }
 
-  // ── Add to cart from button data attributes ──
+  // ── Add to cart from button ──
   function addToCartFromBtn(btn) {
     const id    = parseInt(btn.getAttribute('data-id'));
     const name  = btn.getAttribute('data-name');
@@ -447,8 +481,6 @@
     const qty   = parseInt(btn.getAttribute('data-qty')) || 1;
     const image = btn.getAttribute('data-image');
 
-    // Call your existing addToCart or cart logic here
-    // If your cart.js uses addToCart(id) just call:
     addToCart(id, size, qty, price);
   }
 
@@ -463,7 +495,7 @@
       shopGrid.innerHTML = `
         <p style="color:var(--text-light);grid-column:1/-1;
                   text-align:center;padding:40px;">
-          No products found in this category yet. 
+          No products found in this category yet.
           Check back soon! 🌿
         </p>`;
       return;
@@ -490,7 +522,6 @@
 
     filterBtns.forEach(b => b.classList.remove('active'));
   } else {
-    // Init filter buttons
     filterBtns.forEach(btn => {
       btn.classList.toggle('active', btn.dataset.filter === urlCategory);
     });
@@ -506,5 +537,3 @@
     });
   });
 </script>
-</body>
-</html>
