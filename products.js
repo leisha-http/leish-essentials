@@ -27,7 +27,7 @@ const products = [
     size        : "400g",
     scent       : "Vanilla & Rose",
     image       : "InShot_20260502_175457791.jpg",
-    isNew       : true,
+    isNew       : false,
     isSpecial   : false,
     specialPrice: null,
     comingSoon  : false,
@@ -35,30 +35,29 @@ const products = [
     stock       : 10,
     sizes       : []
   },
-
-  // ── CANDLES ──
   {
-    id          : 2,
-    name        : "Crimson Crush Candle",
-    category    : "candles",
-    description : "A rose sand wax candle. The ultimate centerpiece for an evening of passion.",
-    price       : 160,
-    size        : "100g",
-    scent       : "Rose",
-    image       : "IMG-20260314-WA0071.jpg",
-    isNew       : true,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : false,
-    inStock     : true,
-    stock       : 8,
-    sizes       : [
-      { label: "Small  — 100g", price: 160 },
-      { label: "Medium — 200g", price: 250 },
-      { label: "Large  — 300g", price: 320 }
-    ]
-  },
-
+  id          : 2,
+  name        : " Gift Set",
+  category    : "gift-sets",
+  description : "A beautifully curated gift set, crafted with love at LeishEssentials.",
+  price       : 300,
+  size        : "",
+  image       : "InShot_20260707_154609418.jpg",
+  images      : [
+    "InShot_20260707_154502418.jpg",
+    "InShot_20260707_154746044.jpg",
+    "InShot_20260707_153909192.jpg"
+  ],
+  isNew       : true,
+  isSpecial   : false,
+  specialPrice: null,
+  comingSoon  : false,
+  inStock     : true,
+  stock       : 8,
+  consultCustom: true,
+  sizes       : [],
+  
+},
   {
     id          : 3,
     name        : "Milkshake Candle",
@@ -305,9 +304,29 @@ const products = [
       price: 45
     
   },
+  {id: 14,
+    name: "Eco-Resin Oval Tray",
+    category: "resin",
+    description: "A handmade eco-resin tray, crafted with love at LeishEssentials.",
+    price: 100,
+    size: "",
+    image: "InShot_20260707_154343613.jpg",
+    images: [
+      "InShot_20260707_153909192.jpg",
+      "InShot_20260707_154402740.jpg",
+    ],
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
   // ── SOAPS (Coming Soon) ──
   {
-    id          : 14,
+    id          : 15,
     name        : "Coming Soon",
     category    : "soaps",
     description : "Coming soon",
@@ -326,7 +345,7 @@ const products = [
 
   // ── LIP GLOSS (Coming Soon) ──
   {
-    id          : 15,
+    id          : 16,
     name        : "Coming Soon",
     category    : "lip-gloss",
     description : "Coming soon",
@@ -345,7 +364,7 @@ const products = [
 
   // ── BODY BUTTERS (Coming Soon) ──
   {
-    id          : 16,
+    id          : 17,
     name        : "Coming Soon",
     category    : "body-butters",
     description : "Coming soon",
@@ -364,7 +383,7 @@ const products = [
 
   // ── OILS (Coming Soon) ──
   {
-    id          : 17,
+    id          : 18,
     name        : "Coming Soon",
     category    : "oils",
     description : "Coming soon",
