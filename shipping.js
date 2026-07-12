@@ -6,19 +6,19 @@
 const SHIPPING_RATES = {
   'gauteng-standard': {
     label: 'Gauteng Standard Shipping (3–5 days)',
-    cost: 100
+    cost: 95
   },
   'gauteng-premium': {
     label: 'Gauteng Premium / Next Day Shipping',
-    cost: 150
+    cost: 125
   },
   'national-standard': {
     label: 'Rest of SA Standard Shipping (5–7 days)',
-    cost: 200
+    cost: 110
   },
   'national-premium': {
     label: 'Rest of SA Premium Shipping (2–3 days)',
-    cost: 250
+    cost: 145
   }
 };
 

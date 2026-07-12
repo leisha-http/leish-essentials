@@ -4,11 +4,11 @@
 
 // ── Shipping Rates (in Rands) ──
 const shippingRates = {
-  gauteng_standard     : 100,
-  gauteng_premium      : 150,
-  national_standard    : 145,
-  national_premium     : 185,
-  freeShippingThreshold: 1000
+  gauteng_standard     : 95,
+  gauteng_premium      : 125,
+  national_standard    : 110,
+  national_premium     : 145,
+  freeShippingThreshold: 900
 };
 
 // ══════════════════════════════════════════════
@@ -19,24 +19,7 @@ const products = [
 
   // ── GIFT SETS ──
   {
-    id          : 1,
-    name        : "Happy Mothers Day Gift Set",
-    category    : "gift-sets",
-    description : "A beautifully curated Mother's Day gift set featuring our limited edition candle, perfectly gift wrapped with a personalised message card. The perfect way to spoil mum.",
-    price       : 380,
-    size        : "400g",
-    scent       : "Vanilla & Rose",
-    image       : "InShot_20260502_175457791.jpg",
-    isNew       : false,
-    isSpecial   : false,
-    specialPrice: null,
-    comingSoon  : false,
-    inStock     : true,
-    stock       : 10,
-    sizes       : []
-  },
-  {
-  id          : 2,
+  id          : 1,
   name        : " Gift Set",
   category    : "gift-sets",
   description : "A beautifully curated gift set, crafted with love at LeishEssentials.",
@@ -58,6 +41,23 @@ const products = [
   sizes       : [],
   
 },
+  {
+    id          : 2,
+    name        : "Happy Mothers Day Gift Set",
+    category    : "gift-sets",
+    description : "A beautifully curated Mother's Day gift set featuring our limited edition candle, perfectly gift wrapped with a personalised message card. The perfect way to spoil mum.",
+    price       : 280,
+    size        : "400g",
+    scent       : "Vanilla & Rose",
+    image       : "InShot_20260502_175457791.jpg",
+    isNew       : false,
+    isSpecial   : false,
+    specialPrice: null,
+    comingSoon  : false,
+    inStock     : true,
+    stock       : 10,
+    sizes       : []
+  },
   {
     id          : 3,
     name        : "Milkshake Candle",
@@ -217,7 +217,7 @@ const products = [
     name        : "Petal Play Candle",
     category    : "candles",
     description : "A soft floral candle crafted to lift your mood and fill your space with a gentle, blooming aroma. Hand-poured in small batches with care, it's the perfect fresh flowers without the mess vibe for calm mornings, cosy evenings, and everything in between.",
-    price       : 145,
+    price       : 135,
     size        : "100g",
     scent       : "Rose & Vanilla",
     image       : "IMG-20260411-WA0149.jpg",
@@ -228,7 +228,7 @@ const products = [
     inStock     : true,
     stock       : 7,
     sizes       : [
-      { label: "Small  — 100g", price: 145 }
+      { label: "Small  — 100g", price: 135 }
     ]
   },
 
@@ -288,11 +288,6 @@ const products = [
     price: 45,
     size: "",
     image: "IMG_20260629_150747.jpg",
-    images: [
-      "IMG_20260629_150839.jpg",
-      "IMG_20260629_150829.jpg",
-      "IMG_20260629_150724.jpg"
-    ],
     isNew: false,
     isSpecial: false,
     specialPrice: null,
@@ -311,10 +306,7 @@ const products = [
     price: 100,
     size: "",
     image: "InShot_20260707_154343613.jpg",
-    images: [
-      "InShot_20260707_153909192.jpg",
-      "InShot_20260707_154402740.jpg",
-    ],
+    
     isNew: false,
     isSpecial: false,
     specialPrice: null,
