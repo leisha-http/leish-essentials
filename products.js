@@ -22,7 +22,7 @@ const products = [
   id          : 1,
   name        : " Gift Set",
   category    : "gift-sets",
-  description : "A beautifully curated gift set, crafted with love at LeishEssentials.",
+  description : "A beautifully curated gift set, crafted with love at LeishEssentials.Includes 1x candle, 1x mug(with custom name), 1x eco-resin oval tray.",
   price       : 300,
   size        : "",
   image       : "InShot_20260707_154609418.jpg",
@@ -285,7 +285,7 @@ const products = [
     name: "Resin Cresent Keychain",
     category: "resin",
     description: "A handmade resin keychain, crafted with love at LeishEssentials.",
-    price: 45,
+    price: 50,
     size: "",
     image: "IMG_20260629_150747.jpg",
     isNew: false,
@@ -296,7 +296,7 @@ const products = [
     stock: 8,
     consultCustom: true,
   
-      price: 45
+      price: 50
     
   },
   {id: 14,
@@ -316,9 +316,94 @@ const products = [
     consultCustom: true,
     
   },
+  {id: 15,
+    name: " Resin Binder Card",
+    category: "resin",
+    description: "A handmade toploader, crafted with love at LeishEssentials. Includes 1x decorated toploader(holds standard sized photos/cards 6.8cmW x 9.8H), 1x protective clear sleeve",
+    price: 70,
+    size: "",
+    image: "InShot_20260724_150018797.jpg",
+    
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
+  {id: 16,
+    name: "Resin Binder Card",
+    category: "resin",
+    description: "A handmade resin toploader, crafted with love at LeishEssentials. Includes 1x decorated toploader(holds standard sized photos/cards 6.8cmW x 9.8H), 1x protective clear sleeve",
+    price: 70,
+    size: "",
+    image: "InShot_20260724_150046144.jpg",
+    
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
+  {id: 17,
+    name: "butterfly keychain",
+    category: "resin",
+    description: "A handmade resin keychain, crafted with love at LeishEssentials.",
+    price: 50,
+    size: "",
+    image: "InShot_20260724_145950102.jpg",
+    
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
+  {id: 18,
+    name: "Resin Pocket Art",
+    category: "resin",
+    description: "A handmade Resin pocket art, crafted with love at LeishEssentials.",
+    price: 70,
+    size: "",
+    image: "InShot_20260724_150105226.jpg",
+    
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
+  {id: 19,
+    name: "Personalised Pyrography Wooden Board",
+    category: "woodcraft & engraving",
+    description: "A handmade Resin pocket art, crafted with love at LeishEssentials.Includes 1x bamboo cutting board(with custom burned lettering), 1x care instruction card. Food safe and ready for display. ",
+    price: 145,
+    size: "",
+    image: "InShot_20260721_183337930.jpg",
+    
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
   // ── SOAPS (Coming Soon) ──
   {
-    id          : 15,
+    id          : 20,
     name        : "Coming Soon",
     category    : "soaps",
     description : "Coming soon",
@@ -337,7 +422,7 @@ const products = [
 
   // ── LIP GLOSS (Coming Soon) ──
   {
-    id          : 16,
+    id          : 21,
     name        : "Coming Soon",
     category    : "lip-gloss",
     description : "Coming soon",
@@ -356,7 +441,7 @@ const products = [
 
   // ── BODY BUTTERS (Coming Soon) ──
   {
-    id          : 17,
+    id          : 22,
     name        : "Coming Soon",
     category    : "body-butters",
     description : "Coming soon",
@@ -375,7 +460,7 @@ const products = [
 
   // ── OILS (Coming Soon) ──
   {
-    id          : 18,
+    id          : 23,
     name        : "Coming Soon",
     category    : "oils",
     description : "Coming soon",
