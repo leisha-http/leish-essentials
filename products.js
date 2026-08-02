@@ -46,7 +46,7 @@ const products = [
     name        : "Happy Mothers Day Gift Set",
     category    : "gift-sets",
     description : "A beautifully curated Mother's Day gift set featuring our limited edition candle, perfectly gift wrapped with a personalised message card. The perfect way to spoil mum.",
-    price       : 280,
+    price       : 350,
     size        : "400g",
     scent       : "Vanilla & Rose",
     image       : "InShot_20260502_175457791.jpg",
