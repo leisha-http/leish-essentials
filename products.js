@@ -233,8 +233,42 @@ const products = [
   },
 
   // ── RESIN STUDIO ──
+  {id: 11,
+    name: "Resin Phone Case",
+    category: "resin",
+    description: "A handmade Resin Phone Case, crafted with love at LeishEssentials.",
+    price: 125,
+    size: "",
+    image: "InShot_20260831_124719633.jpg",
+    
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
+  {id: 12,
+    name: "Resin Phone Case",
+    category: "resin",
+    description: "A handmade Resin Phone case, crafted with love at LeishEssentials.",
+    price: 125,
+    size: "",
+    image: "IMG_20260831_123141.jpg",
+    
+    isNew: false,
+    isSpecial: false,
+    specialPrice: null,
+    comingSoon: false,
+    inStock: true,
+    stock: 8,
+    consultCustom: true,
+    
+  },
   {
-    id          : 11,
+    id          : 13,
     name        : "Resin Bookmark",
     category    : "resin",
     description : "A handmade resin bookmark, crafted with love at LeishEssentials.",
@@ -257,7 +291,7 @@ const products = [
   },
   
   {
-    id: 12,
+    id: 14,
     name: "Resin Alphabet Keychain",
     category: "resin",
     description: "A handmade resin keychain, crafted with love at LeishEssentials.",
@@ -281,7 +315,7 @@ const products = [
     
   },
   {
-    id: 13,
+    id: 15,
     name: "Resin Cresent Keychain",
     category: "resin",
     description: "A handmade resin keychain, crafted with love at LeishEssentials.",
@@ -299,7 +333,7 @@ const products = [
       price: 50
     
   },
-  {id: 14,
+  {id: 16,
     name: "Eco-Resin Oval Tray",
     category: "resin",
     description: "A handmade eco-resin tray, crafted with love at LeishEssentials.",
@@ -316,7 +350,7 @@ const products = [
     consultCustom: true,
     
   },
-  {id: 15,
+  {id: 17,
     name: " Resin Binder Card",
     category: "resin",
     description: "A handmade toploader, crafted with love at LeishEssentials. Includes 1x decorated toploader(holds standard sized photos/cards 6.8cmW x 9.8H), 1x protective clear sleeve",
@@ -333,7 +367,7 @@ const products = [
     consultCustom: true,
     
   },
-  {id: 16,
+  {id: 18,
     name: "Resin Binder Card",
     category: "resin",
     description: "A handmade resin toploader, crafted with love at LeishEssentials. Includes 1x decorated toploader(holds standard sized photos/cards 6.8cmW x 9.8H), 1x protective clear sleeve",
@@ -350,7 +384,7 @@ const products = [
     consultCustom: true,
     
   },
-  {id: 17,
+  {id: 19,
     name: "butterfly keychain",
     category: "resin",
     description: "A handmade resin keychain, crafted with love at LeishEssentials.",
@@ -367,7 +401,7 @@ const products = [
     consultCustom: true,
     
   },
-  {id: 18,
+  {id: 20,
     name: "Resin Pocket Art",
     category: "resin",
     description: "A handmade Resin pocket art, crafted with love at LeishEssentials.",
@@ -384,7 +418,7 @@ const products = [
     consultCustom: true,
     
   },
-  {id: 19,
+  {id: 21,
     name: "Personalised Pyrography Wooden Board",
     category: "woodcraft & engraving",
     description: "A handmade Resin pocket art, crafted with love at LeishEssentials.Includes 1x bamboo cutting board(with custom burned lettering), 1x care instruction card. Food safe and ready for display. ",
@@ -403,7 +437,7 @@ const products = [
   },
   // ── SOAPS (Coming Soon) ──
   {
-    id          : 20,
+    id          : 22,
     name        : "Coming Soon",
     category    : "soaps",
     description : "Coming soon",
@@ -422,7 +456,7 @@ const products = [
 
   // ── LIP GLOSS (Coming Soon) ──
   {
-    id          : 21,
+    id          : 23,
     name        : "Coming Soon",
     category    : "lip-gloss",
     description : "Coming soon",
@@ -441,7 +475,7 @@ const products = [
 
   // ── BODY BUTTERS (Coming Soon) ──
   {
-    id          : 22,
+    id          : 24,
     name        : "Coming Soon",
     category    : "body-butters",
     description : "Coming soon",
@@ -460,7 +494,7 @@ const products = [
 
   // ── OILS (Coming Soon) ──
   {
-    id          : 23,
+    id          : 25,
     name        : "Coming Soon",
     category    : "oils",
     description : "Coming soon",
